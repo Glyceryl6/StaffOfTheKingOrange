@@ -4,6 +4,8 @@ import com.glyceryl6.staff.common.items.StaffItem;
 import com.glyceryl6.staff.registry.ModEntityTypes;
 import com.glyceryl6.staff.registry.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -17,6 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ResolvableProfile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PlayerHeadBlock;
@@ -87,11 +90,18 @@ public class PlacedStaff extends Entity implements ItemSupplier {
                     Block block = blockItem.getBlock();
                     BlockState state = block.defaultBlockState();
                     if (this.getItem().getItem() instanceof StaffItem) {
+                        DataComponentType<ResolvableProfile> profileType = DataComponents.PROFILE;
                         Block coreBlock = getCoreBlockState(this.getItem()).getBlock();
-                        if (coreBlock != block || coreBlock instanceof PlayerHeadBlock) {
+                        ResolvableProfile profile = itemInHand.get(profileType);
+                        boolean flag = block instanceof PlayerHeadBlock;
+                        if (coreBlock != block || flag) {
                             ItemStack copyOfStack = this.getItem().copy();
                             itemInHand.consume(1, player);
                             putCoreBlock(copyOfStack, state);
+                            if (flag && profile != null) {
+                                copyOfStack.set(profileType, profile);
+                            }
+
                             this.setItem(copyOfStack);
                         }
                     }
