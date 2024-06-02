@@ -20,13 +20,13 @@ public class Main {
 
     public Main() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModBlocks.BLOCKS.register(modEventBus);
-        ModItems.ITEMS.register(modEventBus);
-        ModMobEffects.MOB_EFFECTS.register(modEventBus);
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModDataComponents.DATA_COMPONENT_TYPE.register(modEventBus);
         ModParticleTypes.PARTICLE_TYPES.register(modEventBus);
         ModEntityTypes.ENTITY_TYPES.register(modEventBus);
+        ModMobEffects.MOB_EFFECTS.register(modEventBus);
+        ModBlocks.BLOCKS.register(modEventBus);
+        ModItems.ITEMS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
     }
 

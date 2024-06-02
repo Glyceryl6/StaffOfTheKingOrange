@@ -4,7 +4,8 @@ import com.glyceryl6.staff.api.IAbstractStaffFunction;
 import com.glyceryl6.staff.api.INormalStaffFunction;
 import com.glyceryl6.staff.api.IPlayerHeadStaffFunction;
 import com.glyceryl6.staff.registry.ModDataComponents;
-import com.glyceryl6.staff.registry.ModStaffFunctions;
+import com.glyceryl6.staff.registry.ModNormalStaffs;
+import com.glyceryl6.staff.registry.ModPlayerHeadStaffs;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -65,13 +66,13 @@ public class StaffUniversalUtils {
     }
 
     public static INormalStaffFunction getNormalStaffFunction(ItemStack itemInHand) {
-        Map<Block, INormalStaffFunction> map = ModStaffFunctions.NORMAL_STAFF_MAP;
+        Map<Block, INormalStaffFunction> map = ModNormalStaffs.NORMAL_STAFF_MAP;
         Block block = getCoreBlockState(itemInHand).getBlock();
-        return map.containsKey(block) ? map.get(block) : new INormalStaffFunction() {};
+        return map.containsKey(block) ? map.get(block) : new INormalStaffFunction(block) {};
     }
 
     public static IPlayerHeadStaffFunction getPlayerHeadStaffFunction(ItemStack itemInHand) {
-        Map<String, IPlayerHeadStaffFunction> map = ModStaffFunctions.PLAYER_HEAD_STAFF_MAP;
+        Map<String, IPlayerHeadStaffFunction> map = ModPlayerHeadStaffs.PLAYER_HEAD_STAFF_MAP;
         ResolvableProfile profile = itemInHand.get(DataComponents.PROFILE);
         String name = profile != null ? profile.name().orElse("") : "";
         boolean flag = !name.isEmpty() && map.containsKey(name);

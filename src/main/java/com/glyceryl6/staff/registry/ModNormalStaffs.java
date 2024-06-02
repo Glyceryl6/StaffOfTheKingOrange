@@ -1,7 +1,6 @@
 package com.glyceryl6.staff.registry;
 
 import com.glyceryl6.staff.api.INormalStaffFunction;
-import com.glyceryl6.staff.api.IPlayerHeadStaffFunction;
 import com.glyceryl6.staff.event.ModEventFactory;
 import com.glyceryl6.staff.functions.creation.StaffWithCobblestone;
 import com.glyceryl6.staff.functions.creation.StaffWithCobweb;
@@ -12,7 +11,6 @@ import com.glyceryl6.staff.functions.destructive.StaffWithDiamondBlock;
 import com.glyceryl6.staff.functions.destructive.StaffWithNetheriteBlock;
 import com.glyceryl6.staff.functions.offensive.*;
 import com.glyceryl6.staff.functions.other.*;
-import com.glyceryl6.staff.functions.player_head.StaffWithHerobrineHead;
 import com.glyceryl6.staff.functions.utility.*;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -24,10 +22,9 @@ import net.minecraft.world.level.block.Blocks;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ModStaffFunctions {
+public class ModNormalStaffs {
 
     public static final Map<Block, INormalStaffFunction> NORMAL_STAFF_MAP = normalStaffFunctionMap();
-    public static final Map<String, IPlayerHeadStaffFunction> PLAYER_HEAD_STAFF_MAP = playerHeadStaffFunctionMap();
 
     private static Map<Block, INormalStaffFunction> normalStaffFunctionMap() {
         Map<Block, INormalStaffFunction> map = new HashMap<>();
@@ -63,13 +60,6 @@ public class ModStaffFunctions {
         map.put(Blocks.BELL, new StaffWithBell());
         map.put(Blocks.TNT, new StaffWithTnt());
         ModEventFactory.onRegisterNormalStaffFunction(map);
-        return ImmutableMap.copyOf(map);
-    }
-
-    private static Map<String, IPlayerHeadStaffFunction> playerHeadStaffFunctionMap() {
-        Map<String, IPlayerHeadStaffFunction> map = new HashMap<>();
-        map.put("MHF_Herobrine", new StaffWithHerobrineHead());
-        ModEventFactory.onRegisterPlayerHeadStaffFunction(map);
         return ImmutableMap.copyOf(map);
     }
 
