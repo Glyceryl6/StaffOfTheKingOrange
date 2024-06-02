@@ -1,0 +1,12 @@
+{
+  "item.staff_of_the_king_orange.staff": "Staff",
+  "item.staff_of_the_king_orange.custom_staff": "Staff with %s",
+  "message.staff.core_block_change": "The core block is change to: %s",
+  "tooltip.staff.core_block": "Core Block: ",
+  "tooltip.staff.continuous_mode": "Continuous Mode: ",
+  "tooltip.staff.continuous_mode.true": "ON",
+  "tooltip.staff.continuous_mode.false": "OFF",
+  "key.staff.add_remove_block": "Add/Remove block",
+  "key.staff.random_change_block": "Random change block",
+  "key.staff.continuous_mode": "Switch Continuous Mode"
+}
