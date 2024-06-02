@@ -3,6 +3,7 @@ package com.glyceryl6.staff.api;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
@@ -35,25 +36,17 @@ public interface IAbstractStaffFunction {
         this.useTick(level, player, stack);
     }
 
-    default void useTick(Level level, Player player, ItemStack stack) {
+    default void useTick(Level level, Player player, ItemStack stack) {}
 
-    }
+    default void useOnBlock(UseOnContext context) {}
 
-    default void useOnBlock(UseOnContext context) {
+    default void useOnEntity(Player player, InteractionHand hand, Entity target) {}
 
-    }
+    default void releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int timeCharged) {}
 
-    default void useOnEntity(Player player, InteractionHand hand, Entity target) {
+    default void attackBlock(Level level, Player player, BlockPos pos) {}
 
-    }
-
-    default void attackBlock(Level level, Player player, BlockPos pos) {
-
-    }
-
-    default void attackEntity(Level level, Player player, Entity target) {
-
-    }
+    default void attackEntity(Level level, Player player, Entity target) {}
 
     default List<Block> placeableBlocks() {
         return new ArrayList<>();

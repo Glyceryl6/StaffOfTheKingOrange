@@ -68,7 +68,7 @@ public class StaffUniversalUtils {
     public static INormalStaffFunction getNormalStaffFunction(ItemStack itemInHand) {
         Map<Block, INormalStaffFunction> map = ModNormalStaffs.NORMAL_STAFF_MAP;
         Block block = getCoreBlockState(itemInHand).getBlock();
-        return map.containsKey(block) ? map.get(block) : new INormalStaffFunction(block) {};
+        return map.containsKey(block) ? map.get(block) : new INormalStaffFunction() {};
     }
 
     public static IPlayerHeadStaffFunction getPlayerHeadStaffFunction(ItemStack itemInHand) {

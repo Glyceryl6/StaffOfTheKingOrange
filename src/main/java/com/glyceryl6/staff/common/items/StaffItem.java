@@ -100,6 +100,11 @@ public class StaffItem extends Item {
     }
 
     @Override
+    public void releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int timeCharged) {
+        getStaffFunction(stack).releaseUsing(stack, level, livingEntity, timeCharged);
+    }
+
+    @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         ItemStack itemInHand = player.getItemInHand(usedHand);
         if (this.isSingleMode(itemInHand)) {
