@@ -5,7 +5,6 @@ import com.google.common.base.Suppliers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -59,7 +58,7 @@ public class StaffWithNetheriteBlock implements INormalStaffFunction {
     }
 
     @Override
-    public ItemAttributeModifiers addAttributes(EquipmentSlot slot, ItemStack stack) {
+    public ItemAttributeModifiers addAttributes(ItemStack stack) {
         Supplier<ItemAttributeModifiers> defaultModifiers = Suppliers.memoize(() -> {
             ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
             UUID uuid = UUID.fromString("ca9e513f-3a7e-401a-8d8a-f1196b958de7");

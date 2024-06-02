@@ -38,6 +38,9 @@ public class ModStaffFunctions {
         map.put(Blocks.BLAST_FURNACE, new StaffWithFurnace(RecipeType.BLASTING));
         map.put(Blocks.PACKED_ICE, new StaffWithIce(Blocks.PACKED_ICE));
         map.put(Blocks.BLUE_ICE, new StaffWithIce(Blocks.BLUE_ICE));
+        map.put(Blocks.DAMAGED_ANVIL, new StaffWithAnvil(-0.3D, 20.0D));
+        map.put(Blocks.CHIPPED_ANVIL, new StaffWithAnvil(-0.4D, 30.0D));
+        map.put(Blocks.ANVIL, new StaffWithAnvil(-0.5D, 40.0D));
         map.put(Blocks.WITHER_SKELETON_SKULL, new StaffWithWitherSkull());
         map.put(Blocks.ENCHANTING_TABLE, new StaffWithEnchantingTable());
         map.put(Blocks.NETHERITE_BLOCK, new StaffWithNetheriteBlock());
@@ -52,14 +55,11 @@ public class ModStaffFunctions {
         map.put(Blocks.SNOW_BLOCK, new StaffWithSnowBlock());
         map.put(Blocks.BONE_BLOCK, new StaffWithBoneBlock());
         map.put(Blocks.BOOKSHELF, new StaffWithBookShelf());
-        map.put(Blocks.DAMAGED_ANVIL, new StaffWithAnvil());
-        map.put(Blocks.CHIPPED_ANVIL, new StaffWithAnvil());
         map.put(Blocks.BEE_NEST, new StaffWithBeeNest());
         map.put(Blocks.BEEHIVE, new StaffWithBeeNest());
         map.put(Blocks.BEDROCK, new StaffWithBedrock());
         map.put(Blocks.OAK_LOG, new StaffWithOakLog());
         map.put(Blocks.COBWEB, new StaffWithCobweb());
-        map.put(Blocks.ANVIL, new StaffWithAnvil());
         map.put(Blocks.BELL, new StaffWithBell());
         map.put(Blocks.TNT, new StaffWithTnt());
         ModEventFactory.onRegisterNormalStaffFunction(map);
