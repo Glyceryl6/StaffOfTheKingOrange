@@ -11,6 +11,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.network.CustomPayloadEvent;
 
+/** @noinspection unused*/
 public class StaffContinuousModeC2SPacket {
 
     public StaffContinuousModeC2SPacket(FriendlyByteBuf byteBuf) {}

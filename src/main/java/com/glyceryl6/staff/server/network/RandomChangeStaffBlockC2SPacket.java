@@ -13,6 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.ArrayList;
 import java.util.List;
 
+/** @noinspection unused*/
 public class RandomChangeStaffBlockC2SPacket {
 
     private static List<Block> blocks;

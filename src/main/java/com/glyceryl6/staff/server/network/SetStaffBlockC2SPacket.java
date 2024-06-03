@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.PlayerHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.network.CustomPayloadEvent;
 
+/** @noinspection unused*/
 public class SetStaffBlockC2SPacket {
 
     public SetStaffBlockC2SPacket(FriendlyByteBuf byteBuf) {}
@@ -61,7 +62,7 @@ public class SetStaffBlockC2SPacket {
                     player.displayClientMessage(Component.translatable(key, name), Boolean.TRUE);
                     mainHandItem.set(ModDataComponents.STAFF_CORE_STATE.get(), CustomData.of(coreBlock));
                     offhandItem.consume(1, player);
-                    player.swing(hand);
+                    player.swing(hand, Boolean.TRUE);
                 }
             }
         }
