@@ -35,9 +35,9 @@ public class RandomChangeStaffBlockC2SPacket {
             ItemStack offhandItem = player.getOffhandItem();
             BlockState state = StaffUniversalUtils.getRandomBlockState(blocks.get(player.getRandom().nextInt(blocks.size())));
             if (mainHandItem.getItem() instanceof StaffItem && !(offhandItem.getItem() instanceof StaffItem)) {
-                StaffUniversalUtils.putCoreBlock(mainHandItem, state);
+                StaffUniversalUtils.setNormalBlockForStaff(mainHandItem, state);
             } else if (offhandItem.getItem() instanceof StaffItem && !(mainHandItem.getItem() instanceof StaffItem)) {
-                StaffUniversalUtils.putCoreBlock(offhandItem, state);
+                StaffUniversalUtils.setNormalBlockForStaff(offhandItem, state);
             }
         }
     }

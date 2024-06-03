@@ -32,9 +32,9 @@ public class SetNormalBlockCommand {
         if (player != null && !level.isClientSide) {
             ItemStack itemInHand = player.getItemInHand(player.getUsedItemHand());
             if (itemInHand.getItem() instanceof StaffItem) {
-                StaffUniversalUtils.putCoreBlock(itemInHand, state);
+                StaffUniversalUtils.setNormalBlockForStaff(itemInHand, state);
                 String blockName = state.getBlock().getName().getString();
-                source.sendSuccess(() -> Component.translatable(key, blockName), true);
+                source.sendSuccess(() -> Component.translatable(key, blockName), Boolean.TRUE);
             }
         }
 

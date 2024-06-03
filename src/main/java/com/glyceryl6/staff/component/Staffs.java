@@ -14,13 +14,16 @@ import net.minecraft.world.item.component.TooltipProvider;
 
 import java.util.function.Consumer;
 
-public record Staffs(boolean continuousMode, int note) implements TooltipProvider {
+public record Staffs(boolean isEffective, boolean continuousMode, int note) implements TooltipProvider {
 
     public static final Codec<Staffs> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            Codec.BOOL.fieldOf("is_effective").forGetter(Staffs::isEffective),
             Codec.BOOL.fieldOf("continuous_mode").forGetter(Staffs::continuousMode),
             ExtraCodecs.NON_NEGATIVE_INT.fieldOf("note").forGetter(Staffs::note)).apply(instance, Staffs::new));
     public static final StreamCodec<FriendlyByteBuf, Staffs> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.BOOL, Staffs::continuousMode, ByteBufCodecs.VAR_INT, Staffs::note, Staffs::new);
+            ByteBufCodecs.BOOL, Staffs::isEffective,
+            ByteBufCodecs.BOOL, Staffs::continuousMode,
+            ByteBufCodecs.VAR_INT, Staffs::note, Staffs::new);
 
     @Override
     public void addToTooltip(Item.TooltipContext context, Consumer<Component> tooltipAdder, TooltipFlag tooltipFlag) {

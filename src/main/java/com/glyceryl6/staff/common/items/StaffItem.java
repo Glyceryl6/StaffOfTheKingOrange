@@ -6,7 +6,6 @@ import com.glyceryl6.staff.common.entities.PlacedStaff;
 import com.glyceryl6.staff.component.Staffs;
 import com.glyceryl6.staff.registry.ModDataComponents;
 import com.glyceryl6.staff.registry.ModItems;
-import com.glyceryl6.staff.utils.StaffUniversalUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.ChatFormatting;
@@ -19,8 +18,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
@@ -63,9 +60,9 @@ public class StaffItem extends Item {
         super(new Properties().stacksTo(1));
     }
 
-    private boolean isSingleMode(ItemStack stack) {
+    private boolean isContinuousMode(ItemStack stack) {
         Staffs staffs = stack.get(ModDataComponents.STAFFS.get());
-        return staffs != null && !staffs.continuousMode();
+        return staffs != null && staffs.continuousMode();
     }
 
     @Override
@@ -80,20 +77,17 @@ public class StaffItem extends Item {
 
     @Override
     public void onUseTick(Level level, LivingEntity livingEntity, ItemStack stack, int remainingUseDuration) {
-        Staffs staffs = stack.get(ModDataComponents.STAFFS.get());
-        if (livingEntity instanceof ServerPlayer player && remainingUseDuration > 0) {
-            if (staffs != null && staffs.continuousMode()) {
-                if (player.getTicksUsingItem() > 5) {
-                    IAbstractStaffFunction function = getStaffFunction(stack);
-                    if (function.enableUseTick()) {
-                        function.useTick(level, player, stack);
-                    }
-                } else {
-                    BlockState state = getCoreBlockState(stack);
-                    if (state.getBlock() instanceof NoteBlock) {
-                        int note = level.random.nextInt(NoteBlockInstrument.values().length);
-                        stack.set(ModDataComponents.STAFFS.get(), new Staffs(Boolean.TRUE, note));
-                    }
+        if (livingEntity instanceof ServerPlayer player && this.isContinuousMode(stack)) {
+            if (player.getTicksUsingItem() > 5) {
+                IAbstractStaffFunction function = getStaffFunction(stack);
+                if (function.enableUseTick()) {
+                    function.useTick(level, player, stack);
+                }
+            } else {
+                BlockState state = getCoreBlockState(stack);
+                if (state.getBlock() instanceof NoteBlock) {
+                    int note = level.random.nextInt(NoteBlockInstrument.values().length);
+                    stack.set(ModDataComponents.STAFFS.get(), new Staffs(Boolean.TRUE, Boolean.TRUE, note));
                 }
             }
         }
@@ -101,8 +95,7 @@ public class StaffItem extends Item {
 
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int timeCharged) {
-        Staffs staffs = stack.get(ModDataComponents.STAFFS.get());
-        if (livingEntity instanceof ServerPlayer && staffs != null && staffs.continuousMode()) {
+        if (livingEntity instanceof ServerPlayer && this.isContinuousMode(stack)) {
             getStaffFunction(stack).releaseUsing(stack, level, livingEntity, timeCharged);
         }
     }
@@ -110,18 +103,18 @@ public class StaffItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         ItemStack itemInHand = player.getItemInHand(usedHand);
-        if (this.isSingleMode(itemInHand)) {
+        if (this.isContinuousMode(itemInHand)) {
+            player.startUsingItem(usedHand);
+            return InteractionResultHolder.consume(itemInHand);
+        } else {
             IAbstractStaffFunction function = getStaffFunction(itemInHand);
             if (function.enableUse()) {
                 function.use(level, player, itemInHand);
                 return InteractionResultHolder.sidedSuccess(itemInHand, level.isClientSide);
             }
-
-            return super.use(level, player, usedHand);
-        } else {
-            player.startUsingItem(usedHand);
-            return InteractionResultHolder.consume(itemInHand);
         }
+
+        return super.use(level, player, usedHand);
     }
 
     @Override
@@ -206,8 +199,8 @@ public class StaffItem extends Item {
     }
 
     @Override
-    public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity interactionTarget, InteractionHand usedHand) {
-        getStaffFunction(stack).useOnEntity(player, usedHand, interactionTarget);
+    public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand usedHand) {
+        getStaffFunction(stack).useOnEntity(player, usedHand, target);
         return InteractionResult.sidedSuccess(player.level().isClientSide);
     }
 
@@ -218,12 +211,12 @@ public class StaffItem extends Item {
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return this.isSingleMode(stack) ? 0 : 72000;
+        return this.isContinuousMode(stack) ? 72000 : 0;
     }
 
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
-        return this.isSingleMode(stack) ? UseAnim.NONE : UseAnim.CUSTOM;
+        return this.isContinuousMode(stack) ? UseAnim.CUSTOM : UseAnim.NONE;
     }
 
     @Override
@@ -233,11 +226,11 @@ public class StaffItem extends Item {
         DataComponentType<Staffs> staffs = ModDataComponents.STAFFS.get();
         stack.set(attributes, getStaffFunction(stack).addAttributes(stack));
         if (stack.get(coreState) == null) {
-            putCoreBlock(stack, Blocks.COMMAND_BLOCK.defaultBlockState());
+            setNormalBlockForStaff(stack, Blocks.COMMAND_BLOCK.defaultBlockState());
         }
 
         if (stack.get(staffs) == null) {
-            stack.set(staffs, new Staffs(Boolean.TRUE, 0));
+            stack.set(staffs, new Staffs(Boolean.TRUE, Boolean.TRUE, 0));
         }
     }
 

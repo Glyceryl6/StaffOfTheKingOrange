@@ -4,7 +4,7 @@ import com.glyceryl6.staff.Main;
 import com.glyceryl6.staff.client.model.StaffModel;
 import com.glyceryl6.staff.common.items.StaffItem;
 import com.glyceryl6.staff.event.ModEventFactory;
-import com.glyceryl6.staff.registry.ModDataComponents;
+import com.glyceryl6.staff.utils.StaffUniversalUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -27,14 +27,10 @@ import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.ResolvableProfile;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.DecoratedPotPatterns;
@@ -96,13 +92,7 @@ public class StaffItemRenderer extends BlockEntityWithoutLevelRenderer {
             VertexConsumer consumer = ItemRenderer.getFoilBufferDirect(buffer, this.staffModel.renderType(TEXTURE), Boolean.FALSE, stack.hasFoil());
             this.staffModel.renderToBuffer(poseStack, consumer, packedLight, packedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
             poseStack.popPose();
-            BlockState state = Blocks.COMMAND_BLOCK.defaultBlockState();
-            CustomData customData = stack.get(ModDataComponents.STAFF_CORE_STATE.get());
-            if (customData != null) {
-                CompoundTag coreBlock = customData.copyTag().getCompound("core_block");
-                state = NbtUtils.readBlockState(BuiltInRegistries.BLOCK.asLookup(), coreBlock);
-            }
-
+            BlockState state = StaffUniversalUtils.getCoreBlockState(stack);
             if (ModEventFactory.onRegisterStaffCoreBlockRender(state, poseStack, buffer, packedLight, packedOverlay)) {
                 return;
             }
@@ -114,8 +104,7 @@ public class StaffItemRenderer extends BlockEntityWithoutLevelRenderer {
                     DirectionProperty facing = AbstractFurnaceBlock.FACING;
                     state = state.setValue(lit, flag).setValue(facing, Direction.WEST);
                 } else if (state.is(Blocks.BREWING_STAND)) {
-                    BooleanProperty[] properties = BrewingStandBlock.HAS_BOTTLE;
-                    for (BooleanProperty property : properties) {
+                    for (BooleanProperty property : BrewingStandBlock.HAS_BOTTLE) {
                         state = state.setValue(property, flag);
                     }
                 } else if (state.is(Blocks.REDSTONE_LAMP)) {
@@ -133,7 +122,8 @@ public class StaffItemRenderer extends BlockEntityWithoutLevelRenderer {
                 ResolvableProfile profile = stack.get(profileType);
                 if (profile != null && !profile.isResolved()) {
                     stack.remove(profileType);
-                    profile.resolve().thenAcceptAsync(p -> stack.set(profileType, p), mc);
+                    profile.resolve().thenAcceptAsync(p ->
+                            stack.set(profileType, p), mc);
                     profile = null;
                 }
 

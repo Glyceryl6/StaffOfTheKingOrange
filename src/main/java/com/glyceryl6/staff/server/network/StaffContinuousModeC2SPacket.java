@@ -30,7 +30,7 @@ public class StaffContinuousModeC2SPacket {
                 if (staffs != null) {
                     String key = "tooltip.staff.continuous_mode";
                     boolean flag = !staffs.continuousMode();
-                    mainHandItem.set(staffsType, new Staffs(flag, staffs.note()));
+                    mainHandItem.set(staffsType, new Staffs(staffs.isEffective(), flag, staffs.note()));
                     MutableComponent component = Component.translatable(key + "." + flag);
                     player.displayClientMessage(Component.translatable(key).append(component), Boolean.TRUE);
                 }

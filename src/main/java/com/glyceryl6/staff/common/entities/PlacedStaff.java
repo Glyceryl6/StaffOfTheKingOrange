@@ -97,7 +97,7 @@ public class PlacedStaff extends Entity implements ItemSupplier {
                         if (coreBlock != block || flag) {
                             ItemStack copyOfStack = this.getItem().copy();
                             itemInHand.consume(1, player);
-                            putCoreBlock(copyOfStack, state);
+                            setNormalBlockForStaff(copyOfStack, state);
                             if (flag && profile != null) {
                                 copyOfStack.set(profileType, profile);
                             }

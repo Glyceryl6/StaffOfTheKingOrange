@@ -4,6 +4,8 @@ import com.glyceryl6.staff.api.IHasCobwebHookEntity;
 import com.glyceryl6.staff.api.INormalStaffFunction;
 import com.glyceryl6.staff.common.entities.projectile.visible.Cobweb;
 import com.glyceryl6.staff.common.entities.CobwebHook;
+import com.glyceryl6.staff.component.Staffs;
+import com.glyceryl6.staff.registry.ModDataComponents;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -17,11 +19,16 @@ import net.minecraft.world.level.gameevent.GameEvent;
 
 public class StaffWithCobweb implements INormalStaffFunction {
 
+    private boolean isEffective(ItemStack stack) {
+        Staffs staffs = stack.get(ModDataComponents.STAFFS.get());
+        return staffs != null && staffs.isEffective();
+    }
+
     @Override
     public boolean canPlaceBlock(UseOnContext context) {
-        Player player = context.getPlayer();
-        if (!context.getLevel().isClientSide) {
-            if (player instanceof IHasCobwebHookEntity entity) {
+        boolean flag = this.isEffective(context.getItemInHand());
+        if (!context.getLevel().isClientSide && flag) {
+            if (context.getPlayer() instanceof IHasCobwebHookEntity entity) {
                 return entity.getCobwebHook() == null;
             }
         }
@@ -31,7 +38,7 @@ public class StaffWithCobweb implements INormalStaffFunction {
 
     @Override
     public void use(Level level, Player player, ItemStack stack) {
-        if (player instanceof IHasCobwebHookEntity entity) {
+        if (player instanceof IHasCobwebHookEntity entity && this.isEffective(stack)) {
             CobwebHook cobwebHook = entity.getCobwebHook();
             if (cobwebHook != null) {
                 if (!level.isClientSide) {
@@ -55,7 +62,7 @@ public class StaffWithCobweb implements INormalStaffFunction {
 
     @Override
     public void useTick(Level level, Player player, ItemStack stack) {
-        if (!level.isClientSide) {
+        if (!level.isClientSide && this.isEffective(stack)) {
             Cobweb cobweb = new Cobweb(player, 0.0D, 0.0D, 0.0D, level);
             cobweb.setPos(player.getRandomX(0.5D), player.getY(0.5D), player.getRandomZ(0.5D));
             cobweb.setDeltaMovement(player.getViewVector(1.0F).scale(2.5F));
@@ -68,7 +75,8 @@ public class StaffWithCobweb implements INormalStaffFunction {
     public void useOnBlock(UseOnContext context) {
         Player player = context.getPlayer();
         Level level = context.getLevel();
-        if (player instanceof IHasCobwebHookEntity entity) {
+        boolean flag = this.isEffective(context.getItemInHand());
+        if (player instanceof IHasCobwebHookEntity entity && flag) {
             CobwebHook cobwebHook = entity.getCobwebHook();
             if (cobwebHook != null) {
                 if (!level.isClientSide) {
