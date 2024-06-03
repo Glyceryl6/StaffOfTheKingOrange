@@ -14,17 +14,18 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class SetCoreBlockCommand {
+public class SetNormalBlockCommand {
 
     public static ArgumentBuilder<CommandSourceStack, ?> register(CommandBuildContext context) {
-        return Commands.literal("set").requires((commandSource) -> commandSource.hasPermission(2))
+        return Commands.literal("normal_block").requires(
+                (commandSource) -> commandSource.hasPermission(2))
                 .then(Commands.argument("blockState", BlockStateArgument.block(context))
                         .executes(commandSource -> setBlockState(commandSource.getSource(),
                                 BlockStateArgument.getBlock(commandSource, "blockState"))));
     }
 
     private static int setBlockState(CommandSourceStack source, BlockInput blockInput) {
-        String key = "message.staff.core_block_change";
+        String key = "message.staff.normal_block_change";
         BlockState state = blockInput.getState();
         ServerPlayer player = source.getPlayer();
         ServerLevel level = source.getLevel();

@@ -9,7 +9,8 @@ public class ModCommandCenter {
 
     public ModCommandCenter(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context) {
         dispatcher.register(LiteralArgumentBuilder.<CommandSourceStack> literal("ko_staff")
-                .then(SetCoreBlockCommand.register(context)).executes(ctx -> 0));
+                .then(SetNormalBlockCommand.register(context))
+                .then(SetPlayerHeadBlockCommand.register()).executes(ctx -> 0));
     }
 
 }

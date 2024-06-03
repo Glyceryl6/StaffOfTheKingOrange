@@ -1,7 +1,8 @@
 {
   "item.staff_of_the_king_orange.staff": "Staff",
   "item.staff_of_the_king_orange.custom_staff": "Staff with %s",
-  "message.staff.core_block_change": "The core block is change to: %s",
+  "message.staff.normal_block_change": "The core block is change to: %s",
+  "message.staff.player_head_change": "The core block is change to: %s's head",
   "tooltip.staff.core_block": "Core Block: ",
   "tooltip.staff.continuous_mode": "Continuous Mode: ",
   "tooltip.staff.continuous_mode.true": "ON",
