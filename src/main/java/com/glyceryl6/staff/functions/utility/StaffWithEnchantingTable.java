@@ -3,6 +3,9 @@ package com.glyceryl6.staff.functions.utility;
 import com.glyceryl6.staff.api.INormalStaffFunction;
 import com.glyceryl6.staff.common.entities.projectile.invisible.Enchant;
 import com.glyceryl6.staff.utils.StaffSpecialUtils;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
@@ -24,7 +27,14 @@ public class StaffWithEnchantingTable implements INormalStaffFunction {
     public void useOnBlock(UseOnContext context) {
         Level level = context.getLevel();
         if (!level.isClientSide) {
-            StaffSpecialUtils.setRandomEnchantment(level, context.getClickedPos());
+            StaffSpecialUtils.setItemEntityInRandomEnchantment(level, context.getClickedPos());
+        }
+    }
+
+    @Override
+    public void useOnEntity(Player player, InteractionHand hand, Entity target) {
+        if (target instanceof LivingEntity living && !living.level().isClientSide) {
+            StaffSpecialUtils.setEquipmentInRandomEnchantment(living);
         }
     }
 

@@ -1,7 +1,6 @@
 package com.glyceryl6.staff.utils;
 
 import com.glyceryl6.staff.api.IHasEnchantmentGlintEntity;
-import com.glyceryl6.staff.functions.utility.StaffWithLapisBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
@@ -60,14 +59,25 @@ public class StaffSpecialUtils {
         }
     }
 
-    public static void setRandomEnchantment(Level level, BlockPos pos) {
+    public static void setItemEntityInRandomEnchantment(Level level, BlockPos pos) {
         AABB aabb = new AABB(pos).inflate(0.6D);
-        List<ItemEntity> itemEntities = level.getEntitiesOfClass(ItemEntity.class, aabb);
-        itemEntities.forEach(entity -> getRandomEnchantment().forEach(enchantment -> {
-            ItemStack item = entity.getItem();
-            item.set(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
-            item.enchant(enchantment, level.random.nextInt(Byte.MAX_VALUE));
-        }));
+        level.getEntitiesOfClass(ItemEntity.class, aabb).forEach(entity -> {
+            ItemStack stack = entity.getItem();
+            stack.set(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+            getRandomEnchantment().forEach(enchantment -> stack.enchant(
+                    enchantment, level.random.nextInt(Byte.MAX_VALUE)));
+        });
+    }
+
+    public static void setEquipmentInRandomEnchantment(LivingEntity entity) {
+        setItemInRandomEnchantment(entity.getItemInHand(entity.getUsedItemHand()));
+        entity.getArmorSlots().forEach(StaffSpecialUtils::setItemInRandomEnchantment);
+    }
+
+    public static void setItemInRandomEnchantment(ItemStack itemStack) {
+        itemStack.set(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+        getRandomEnchantment().forEach(enchantment -> itemStack.enchant(
+                enchantment, RandomSource.create().nextInt(Byte.MAX_VALUE)));
     }
 
     public static List<Enchantment> getRandomEnchantment() {
@@ -81,9 +91,8 @@ public class StaffSpecialUtils {
 
     public static void setEntityGlint(Level level, Entity target) {
         if (target instanceof LivingEntity entity) {
-            RandomSource random = RandomSource.create();
-            float pitch = random.nextFloat() * 0.1F + 0.9F;
-            entity.playSound(SoundEvents.ENCHANTMENT_TABLE_USE, 1.0F, pitch);
+            float pitch = RandomSource.create().nextFloat() * 0.1F + 0.9F;
+            entity.playSound(SoundEvents.ENCHANTMENT_TABLE_USE, 2.0F, pitch);
             if (entity instanceof IHasEnchantmentGlintEntity glintEntity) {
                 if (!level.isClientSide) {
                     glintEntity.setGlint(!glintEntity.isGlint());
