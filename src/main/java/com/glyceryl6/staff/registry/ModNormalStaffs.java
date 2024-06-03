@@ -42,6 +42,7 @@ public class ModNormalStaffs {
         map.put(Blocks.ENCHANTING_TABLE, new StaffWithEnchantingTable());
         map.put(Blocks.NETHERITE_BLOCK, new StaffWithNetheriteBlock());
         map.put(Blocks.REDSTONE_BLOCK, new StaffWithRedstoneBlock());
+        map.put(Blocks.SCULK_CATALYST, new StaffWithSculkCatalyst());
         map.put(Blocks.DIAMOND_BLOCK, new StaffWithDiamondBlock());
         map.put(Blocks.BREWING_STAND, new StaffWithBrewingStand());
         map.put(Blocks.LIGHTNING_ROD, new StaffWithLightningRod());

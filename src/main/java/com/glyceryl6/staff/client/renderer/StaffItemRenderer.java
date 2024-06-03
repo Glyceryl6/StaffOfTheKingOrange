@@ -112,21 +112,16 @@ public class StaffItemRenderer extends BlockEntityWithoutLevelRenderer {
                 if (state.getBlock() instanceof AbstractFurnaceBlock) {
                     BooleanProperty lit = AbstractFurnaceBlock.LIT;
                     DirectionProperty facing = AbstractFurnaceBlock.FACING;
-                    if (state.hasProperty(lit)) {
-                        state = state.setValue(lit, flag).setValue(facing, Direction.WEST);
-                    }
-                } else if (state.getBlock() instanceof BrewingStandBlock) {
+                    state = state.setValue(lit, flag).setValue(facing, Direction.WEST);
+                } else if (state.is(Blocks.BREWING_STAND)) {
                     BooleanProperty[] properties = BrewingStandBlock.HAS_BOTTLE;
                     for (BooleanProperty property : properties) {
-                        if (state.hasProperty(property)) {
-                            state = state.setValue(property, flag);
-                        }
+                        state = state.setValue(property, flag);
                     }
-                } else if (state.getBlock() instanceof RedstoneLampBlock) {
-                    BooleanProperty lit = RedstoneLampBlock.LIT;
-                    if (state.hasProperty(lit)) {
-                        state = state.setValue(lit, flag);
-                    }
+                } else if (state.is(Blocks.REDSTONE_LAMP)) {
+                    state = state.setValue(RedstoneLampBlock.LIT, flag);
+                } else if (state.is(Blocks.SCULK_CATALYST)) {
+                    state = state.setValue(SculkCatalystBlock.PULSE, flag);
                 }
             }
 
@@ -166,7 +161,7 @@ public class StaffItemRenderer extends BlockEntityWithoutLevelRenderer {
                     this.renderSide(this.backSide, poseStack, buffer, packedLight);
                     this.renderSide(this.leftSide, poseStack, buffer, packedLight);
                     this.renderSide(this.rightSide, poseStack, buffer, packedLight);
-                } else if (state.getBlock() instanceof EndGatewayBlock) {
+                } else if (state.is(Blocks.END_GATEWAY)) {
                     Matrix4f pose = poseStack.last().pose();
                     VertexConsumer vc = buffer.getBuffer(RenderType.endGateway());
                     this.renderFace(pose, vc, 0.0F, 1.0F, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F);

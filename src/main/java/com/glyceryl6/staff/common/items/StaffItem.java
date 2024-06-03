@@ -101,7 +101,10 @@ public class StaffItem extends Item {
 
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int timeCharged) {
-        getStaffFunction(stack).releaseUsing(stack, level, livingEntity, timeCharged);
+        Staffs staffs = stack.get(ModDataComponents.STAFFS.get());
+        if (livingEntity instanceof ServerPlayer && staffs != null && staffs.continuousMode()) {
+            getStaffFunction(stack).releaseUsing(stack, level, livingEntity, timeCharged);
+        }
     }
 
     @Override

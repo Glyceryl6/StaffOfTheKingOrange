@@ -42,7 +42,7 @@ public interface IAbstractStaffFunction {
 
     default void useOnEntity(Player player, InteractionHand hand, Entity target) {}
 
-    default void releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int timeCharged) {}
+    default void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeCharged) {}
 
     default void attackBlock(Level level, Player player, BlockPos pos) {}
 
