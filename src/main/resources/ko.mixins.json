@@ -2,8 +2,8 @@
     "required": true,
     "minVersion": "0.8",
     "package": "com.glyceryl6.staff.mixin",
-    "refmap": "ea.refmap.json",
-    "compatibilityLevel": "JAVA_16",
+    "refmap": "ko.refmap.json",
+    "compatibilityLevel": "JAVA_17",
     "mixins": [
         "MixinLivingEntity",
         "MixinPlayer"

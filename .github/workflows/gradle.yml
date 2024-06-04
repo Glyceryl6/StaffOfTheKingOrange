@@ -30,7 +30,7 @@ jobs:
       id: build
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: build publish
+        arguments: jarjar publish
       env:
         SNAPSHOT: true
         ORG_GRADLE_PROJECT_mavenUsername: ${{ secrets.NEXUS_USER }}

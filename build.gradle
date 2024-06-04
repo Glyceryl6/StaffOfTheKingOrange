@@ -57,9 +57,9 @@ minecraft {
 
 mixin {
 
-    add sourceSets.main, "ea.refmap.json"
+    add sourceSets.main, "ko.refmap.json"
 
-    config "ea.mixins.json"
+    config("ko.mixins.json")
 
 }
 
@@ -97,6 +97,7 @@ tasks.named('processResources', ProcessResources).configure {
 
 tasks.named('jar', Jar).configure {
     manifest {
+        attributes.put("MixinConfigs", "ko.mixins.json")
         attributes([
             'Specification-Title'     : mod_id,
             'Specification-Vendor'    : mod_authors,

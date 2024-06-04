@@ -34,8 +34,8 @@ public class SetStaffBlockC2SPacket {
         if (player != null) {
             ItemStack mainHandItem = player.getMainHandItem();
             ItemStack offhandItem = player.getOffhandItem();
-            this.addItem(player, mainHandItem, offhandItem, InteractionHand.MAIN_HAND);
-            this.addItem(player, offhandItem, mainHandItem, InteractionHand.OFF_HAND);
+            this.addItem(player, mainHandItem, offhandItem, InteractionHand.OFF_HAND);
+            this.addItem(player, offhandItem, mainHandItem, InteractionHand.MAIN_HAND);
         }
     }
 
@@ -52,7 +52,7 @@ public class SetStaffBlockC2SPacket {
                 boolean flag = itemBlock instanceof PlayerHeadBlock;
                 if (state.getBlock() != itemBlock || flag) {
                     coreBlock.put("core_block", stateTag);
-                    String key = "message.staff.core_block_change";
+                    String key = "message.staff.normal_block_change";
                     String name = itemBlock.getName().getString();
                     if (flag && profile != null) {
                         mainHandItem.set(profileType, profile);
