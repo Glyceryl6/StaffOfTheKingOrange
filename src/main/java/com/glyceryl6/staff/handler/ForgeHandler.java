@@ -98,39 +98,4 @@ public class ForgeHandler {
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
-    @SubscribeEvent
-    public static void onMovementInputUpdate(MovementInputUpdateEvent event) {
-        Optional<Holder<MobEffect>> holder = ModMobEffects.STUN.getHolder();
-        if (holder.isPresent() && event.getEntity().hasEffect(holder.get())) {
-            Input input = event.getInput();
-            input.up = false;
-            input.down = false;
-            input.left = false;
-            input.right = false;
-            input.forwardImpulse = 0.0F;
-            input.leftImpulse = 0.0F;
-            input.jumping = false;
-            input.shiftKeyDown = false;
-        }
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    @SubscribeEvent
-    public static void onClientTick(TickEvent.ClientTickEvent event) {
-        if (Minecraft.getInstance().player != null) {
-            if (ModKeyMappings.RANDOM_CHANGE_KEYBINDING.consumeClick()) {
-                ModNetworks.sendToServer(new RandomChangeStaffBlockC2SPacket());
-            }
-
-            if (ModKeyMappings.ADD_REMOVE_KEYBINDING.consumeClick()) {
-                ModNetworks.sendToServer(new SetStaffBlockC2SPacket());
-            }
-
-            if (ModKeyMappings.CONTINUOUS_MODE_KEYBINDING.consumeClick()) {
-                ModNetworks.sendToServer(new StaffContinuousModeC2SPacket());
-            }
-        }
-    }
-
 }
