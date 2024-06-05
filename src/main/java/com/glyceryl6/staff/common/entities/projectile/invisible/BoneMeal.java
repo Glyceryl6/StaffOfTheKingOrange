@@ -59,7 +59,7 @@ public class BoneMeal extends AbstractInvisibleProjectile {
         }
     }
 
-    private static boolean applyBoneMeal(Level level, BlockPos pos) {
+    public static boolean applyBoneMeal(Level level, BlockPos pos) {
         BlockState blockState = level.getBlockState(pos);
         if (blockState.getBlock() instanceof BonemealableBlock block && block.isValidBonemealTarget(level, pos, blockState)) {
             if (level instanceof ServerLevel serverLevel && block.isBonemealSuccess(level, level.random, pos, blockState)) {
@@ -72,7 +72,7 @@ public class BoneMeal extends AbstractInvisibleProjectile {
         return false;
     }
 
-    private static boolean growWaterPlant(Level level, BlockPos pos, @Nullable Direction clickedSide) {
+    public static boolean growWaterPlant(Level level, BlockPos pos, @Nullable Direction clickedSide) {
         if (level.getBlockState(pos).is(Blocks.WATER) && level.getFluidState(pos).getAmount() == 8) {
             if (level instanceof ServerLevel serverLevel) {
                 RandomSource random = level.getRandom();

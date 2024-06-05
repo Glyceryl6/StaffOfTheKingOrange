@@ -35,6 +35,7 @@ public class ModNormalStaffs {
         map.put(Blocks.BLAST_FURNACE, new StaffWithFurnace(RecipeType.BLASTING));
         map.put(Blocks.PACKED_ICE, new StaffWithIce(Blocks.PACKED_ICE));
         map.put(Blocks.BLUE_ICE, new StaffWithIce(Blocks.BLUE_ICE));
+        map.put(Blocks.ICE, new StaffWithIce(Blocks.ICE));
         map.put(Blocks.DAMAGED_ANVIL, new StaffWithAnvil(-0.3D, 20.0D));
         map.put(Blocks.CHIPPED_ANVIL, new StaffWithAnvil(-0.4D, 30.0D));
         map.put(Blocks.ANVIL, new StaffWithAnvil(-0.5D, 40.0D));
