@@ -2,7 +2,6 @@ package com.glyceryl6.staff.utils;
 
 import com.glyceryl6.staff.api.IHasEnchantmentGlintEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
@@ -13,7 +12,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
@@ -29,31 +27,27 @@ import java.util.Optional;
 public class StaffSpecialUtils {
 
     public static void smeltingItemOrBlock(RecipeType<? extends AbstractCookingRecipe> recipeType, BlockPos pos, Level level) {
-        List<ItemEntity> itemEntities = level.getEntitiesOfClass(ItemEntity.class, new AABB(pos).inflate(0.6D));
-        SimpleContainer container = new SimpleContainer(new ItemStack(level.getBlockState(pos).getBlock()));
-        RecipeManager manager = level.getRecipeManager();
-        RegistryAccess registryAccess = level.registryAccess();
+        ItemStack blockStack = new ItemStack(level.getBlockState(pos).getBlock());
         Optional<? extends RecipeHolder<? extends AbstractCookingRecipe>> holder1 =
-                manager.getRecipeFor(recipeType, container, level);
+                level.getRecipeManager().getRecipeFor(recipeType, new SimpleContainer(blockStack), level);
         if (holder1.isPresent()) {
-            ItemStack resultItem = holder1.get().value().getResultItem(registryAccess);
-            if (!resultItem.isEmpty()) {
-                ItemEntity itemEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), resultItem);
-                resultItem.setCount(1);
-                level.removeBlock(pos, Boolean.FALSE);
-                level.addFreshEntity(itemEntity);
-            }
+            ItemEntity itemEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), blockStack);
+            itemEntity.setNeverPickUp();
+            level.removeBlock(pos, Boolean.FALSE);
+            level.addFreshEntity(itemEntity);
         }
 
+        List<ItemEntity> itemEntities = level.getEntitiesOfClass(ItemEntity.class, new AABB(pos).inflate(0.6D));
         if (!itemEntities.isEmpty()) {
             itemEntities.forEach(entity -> {
                 ItemStack stack = entity.getItem();
                 Optional<? extends RecipeHolder<? extends AbstractCookingRecipe>> holder2 =
-                        manager.getRecipeFor(recipeType, new SimpleContainer(stack), level);
+                        level.getRecipeManager().getRecipeFor(recipeType, new SimpleContainer(stack), level);
                 if (holder2.isPresent()) {
-                    ItemStack resultItem = holder2.get().value().getResultItem(registryAccess);
+                    ItemStack resultItem = holder2.get().value().getResultItem(level.registryAccess());
                     resultItem.setCount(stack.getCount());
                     entity.setItem(resultItem);
+                    entity.setNoPickUpDelay();
                 }
             });
         }
