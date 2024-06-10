@@ -3,6 +3,7 @@ package com.glyceryl6.staff.client.renderer;
 import com.glyceryl6.staff.common.entities.FakeBlock;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -36,7 +37,7 @@ public class FakeBlockRenderer extends EntityRenderer<FakeBlock> {
 
     public FakeBlockRenderer(EntityRendererProvider.Context context) {
         super(context);
-        this.blockColors = BlockColors.createDefault();
+        this.blockColors = Minecraft.getInstance().getBlockColors();
         this.blockModelShaper = context.getModelManager().getBlockModelShaper();
         this.modelRenderer = new ForgeModelBlockRenderer(this.blockColors);
     }
