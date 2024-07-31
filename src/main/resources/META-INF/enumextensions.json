@@ -1,0 +1,13 @@
+{
+    "entries": [
+        {
+            "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+            "name": "STAFF_OF_THE_KING_ORANGE_STAFF_USING",
+            "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+            "parameters": {
+                "class": "com/glyceryl6/staff/common/items/StaffItem$CustomRenderer",
+                "field": "STAFF_USING"
+            }
+        }
+    ]
+}

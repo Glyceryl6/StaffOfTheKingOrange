@@ -1,0 +1,13 @@
+{
+  "item.staff_of_the_king_orange.staff": "权杖",
+  "item.staff_of_the_king_orange.custom_staff": "%s权杖",
+  "message.staff.normal_block_change": "核心方块已更改为：%s",
+  "message.staff.player_head_change": "核心方块已更改为：%s的头",
+  "tooltip.staff.core_block": "核心方块：",
+  "tooltip.staff.continuous_mode": "连续模式：",
+  "tooltip.staff.continuous_mode.true": "开",
+  "tooltip.staff.continuous_mode.false": "关",
+  "key.staff.add_remove_block": "添加/移除方块",
+  "key.staff.random_change_block": "随机切换方块",
+  "key.staff.continuous_mode": "切换连续模式"
+}
