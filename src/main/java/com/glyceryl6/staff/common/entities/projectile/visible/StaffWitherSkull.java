@@ -1,6 +1,6 @@
 package com.glyceryl6.staff.common.entities.projectile.visible;
 
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.WitherSkull;
@@ -19,7 +19,7 @@ public class StaffWitherSkull extends WitherSkull {
 
     @Override
     public EntityType<?> getType() {
-        return ModEntityTypes.STAFF_WITHER_SKULL.get();
+        return KOEntityTypes.STAFF_WITHER_SKULL.get();
     }
 
     @Override

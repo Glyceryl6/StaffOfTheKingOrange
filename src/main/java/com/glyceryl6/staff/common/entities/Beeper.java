@@ -1,7 +1,7 @@
 package com.glyceryl6.staff.common.entities;
 
 import com.glyceryl6.staff.common.entities.goal.BeeperSwellGoal;
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -29,7 +29,7 @@ public class Beeper extends Bee {
 
     @Override
     public EntityType<?> getType() {
-        return ModEntityTypes.BEEPER.get();
+        return KOEntityTypes.BEEPER.get();
     }
 
     @Override

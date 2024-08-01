@@ -1,8 +1,8 @@
 package com.glyceryl6.staff.common.entities.projectile.invisible;
 
 import com.glyceryl6.staff.common.blocks.entity.SignalBlockEntity;
-import com.glyceryl6.staff.registry.ModBlocks;
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOBlocks;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
@@ -21,7 +21,7 @@ public class Signal extends AbstractInvisibleProjectile {
     }
 
     public Signal(LivingEntity shooter, Vec3 movement, Level level) {
-        super(ModEntityTypes.SIGNAL.get(), shooter, movement, level);
+        super(KOEntityTypes.SIGNAL.get(), shooter, movement, level);
     }
 
     @Nullable @Override
@@ -44,7 +44,7 @@ public class Signal extends AbstractInvisibleProjectile {
             BlockPos blockPos = this.blockPosition();
             BlockPos.withinManhattan(blockPos, 1, 1, 1).forEach(pos -> {
                 if (level.getBlockState(pos).isAir()) {
-                    level.setBlockAndUpdate(pos, ModBlocks.SIGNAL_BLOCK.get().defaultBlockState());
+                    level.setBlockAndUpdate(pos, KOBlocks.SIGNAL_BLOCK.get().defaultBlockState());
                     if (level.getBlockEntity(pos) instanceof SignalBlockEntity blockEntity) {
                         blockEntity.removeCountdown = 2;
                     }

@@ -5,7 +5,7 @@ import com.glyceryl6.staff.api.INormalStaffFunction;
 import com.glyceryl6.staff.common.entities.projectile.visible.Cobweb;
 import com.glyceryl6.staff.common.entities.CobwebHook;
 import com.glyceryl6.staff.component.Staffs;
-import com.glyceryl6.staff.registry.ModDataComponents;
+import com.glyceryl6.staff.registry.KODataComponents;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -21,7 +21,7 @@ import net.minecraft.world.phys.Vec3;
 public class StaffWithCobweb implements INormalStaffFunction {
 
     private boolean isEffective(ItemStack stack) {
-        Staffs staffs = stack.get(ModDataComponents.STAFFS.get());
+        Staffs staffs = stack.get(KODataComponents.STAFFS.get());
         return staffs != null && staffs.isEffective();
     }
 

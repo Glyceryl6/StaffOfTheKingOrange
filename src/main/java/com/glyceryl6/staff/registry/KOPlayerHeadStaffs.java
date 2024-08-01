@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableMap;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ModPlayerHeadStaffs {
+public class KOPlayerHeadStaffs {
 
     public static final Map<String, IPlayerHeadStaffFunction> PLAYER_HEAD_STAFF_MAP = playerHeadStaffFunctionMap();
 

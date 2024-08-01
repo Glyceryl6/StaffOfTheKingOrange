@@ -3,7 +3,7 @@ package com.glyceryl6.staff.server.network;
 import com.glyceryl6.staff.Main;
 import com.glyceryl6.staff.common.items.StaffItem;
 import com.glyceryl6.staff.component.Staffs;
-import com.glyceryl6.staff.registry.ModDataComponents;
+import com.glyceryl6.staff.registry.KODataComponents;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.chat.Component;
@@ -28,7 +28,7 @@ public record StaffContinuousModeC2SPacket(int key) implements CustomPacketPaylo
     }
 
     public static void serverSideHandle(StaffContinuousModeC2SPacket packet, IPayloadContext context) {
-        DataComponentType<Staffs> staffsType = ModDataComponents.STAFFS.get();
+        DataComponentType<Staffs> staffsType = KODataComponents.STAFFS.get();
         Player player = context.player();
         if (player instanceof ServerPlayer) {
             ItemStack mainHandItem = player.getMainHandItem();

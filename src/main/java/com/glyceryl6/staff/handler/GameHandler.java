@@ -2,8 +2,8 @@ package com.glyceryl6.staff.handler;
 
 import com.glyceryl6.staff.Main;
 import com.glyceryl6.staff.common.items.StaffItem;
-import com.glyceryl6.staff.registry.ModKeyMappings;
-import com.glyceryl6.staff.registry.ModMobEffects;
+import com.glyceryl6.staff.registry.KOKeyMappings;
+import com.glyceryl6.staff.registry.KOMobEffects;
 import com.glyceryl6.staff.server.commands.ModCommandCenter;
 import com.glyceryl6.staff.server.network.RandomChangeStaffBlockC2SPacket;
 import com.glyceryl6.staff.server.network.SetStaffBlockC2SPacket;
@@ -102,7 +102,7 @@ public class GameHandler {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onMovementInputUpdate(MovementInputUpdateEvent event) {
-        Optional<Holder.Reference<MobEffect>> holder = BuiltInRegistries.MOB_EFFECT.getHolder(ModMobEffects.STUN.getId());
+        Optional<Holder.Reference<MobEffect>> holder = BuiltInRegistries.MOB_EFFECT.getHolder(KOMobEffects.STUN.getId());
         if (holder.isPresent() && event.getEntity().hasEffect(holder.get())) {
             Input input = event.getInput();
             input.up = false;
@@ -120,15 +120,15 @@ public class GameHandler {
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Pre event) {
         if (Minecraft.getInstance().player != null) {
-            if (ModKeyMappings.RANDOM_CHANGE_KEYBINDING.consumeClick()) {
+            if (KOKeyMappings.RANDOM_CHANGE_KEYBINDING.consumeClick()) {
                 PacketDistributor.sendToServer(new RandomChangeStaffBlockC2SPacket(0));
             }
 
-            if (ModKeyMappings.ADD_REMOVE_KEYBINDING.consumeClick()) {
+            if (KOKeyMappings.ADD_REMOVE_KEYBINDING.consumeClick()) {
                 PacketDistributor.sendToServer(new SetStaffBlockC2SPacket(0));
             }
 
-            if (ModKeyMappings.CONTINUOUS_MODE_KEYBINDING.consumeClick()) {
+            if (KOKeyMappings.CONTINUOUS_MODE_KEYBINDING.consumeClick()) {
                 PacketDistributor.sendToServer(new StaffContinuousModeC2SPacket(0));
             }
         }

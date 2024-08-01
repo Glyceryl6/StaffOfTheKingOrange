@@ -1,6 +1,6 @@
 package com.glyceryl6.staff.common.entities.projectile.invisible;
 
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleOptions;
@@ -33,7 +33,7 @@ public class IceBomb extends AbstractInvisibleProjectile {
     }
 
     public IceBomb(LivingEntity shooter, Vec3 movement, Level level) {
-        super(ModEntityTypes.ICE_BOMB.get(), shooter, movement, level);
+        super(KOEntityTypes.ICE_BOMB.get(), shooter, movement, level);
     }
 
     @Nullable @Override

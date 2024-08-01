@@ -3,7 +3,7 @@ package com.glyceryl6.staff.registry;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 
-public class ModKeyMappings {
+public class KOKeyMappings {
 
     public static final KeyMapping ADD_REMOVE_KEYBINDING = new KeyMapping(
             "key.staff.add_remove_block", InputConstants.KEY_R, KeyMapping.CATEGORY_MISC);

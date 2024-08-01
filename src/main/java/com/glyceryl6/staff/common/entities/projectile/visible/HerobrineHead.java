@@ -1,6 +1,6 @@
 package com.glyceryl6.staff.common.entities.projectile.visible;
 
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Explosion;
@@ -15,7 +15,7 @@ public class HerobrineHead extends AbstractPlayerHead {
     }
 
     public HerobrineHead(Level level, LivingEntity shooter, Vec3 movement) {
-        super(ModEntityTypes.HEROBRINE_HEAD.get(), level, shooter, movement);
+        super(KOEntityTypes.HEROBRINE_HEAD.get(), level, shooter, movement);
     }
 
     @Override

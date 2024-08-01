@@ -1,7 +1,7 @@
 package com.glyceryl6.staff.common.entities.projectile.invisible;
 
-import com.glyceryl6.staff.registry.ModEntityTypes;
-import com.glyceryl6.staff.registry.ModParticleTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
+import com.glyceryl6.staff.registry.KOParticleTypes;
 import com.glyceryl6.staff.utils.StaffSpecialUtils;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.entity.EntityType;
@@ -19,12 +19,12 @@ public class Enchant extends AbstractInvisibleProjectile {
     }
 
     public Enchant(LivingEntity shooter, Vec3 movement, Level level) {
-        super(ModEntityTypes.ENCHANT.get(), shooter, movement, level);
+        super(KOEntityTypes.ENCHANT.get(), shooter, movement, level);
     }
 
     @Nullable @Override
     protected ParticleOptions getTrailParticle() {
-        return ModParticleTypes.HUGE_ENCHANT.get();
+        return KOParticleTypes.HUGE_ENCHANT.get();
     }
 
     @Override

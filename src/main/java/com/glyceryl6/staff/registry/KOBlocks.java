@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class ModBlocks {
+public class KOBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, Main.MOD_ID);
     public static final DeferredHolder<Block, Block> SIGNAL_BLOCK = BLOCKS.register("signal_block",

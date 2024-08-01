@@ -3,7 +3,7 @@ package com.glyceryl6.staff.functions.utility;
 import com.glyceryl6.staff.common.entities.projectile.visible.MusicalNote;
 import com.glyceryl6.staff.api.INormalStaffFunction;
 import com.glyceryl6.staff.component.Staffs;
-import com.glyceryl6.staff.registry.ModDataComponents;
+import com.glyceryl6.staff.registry.KODataComponents;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +27,7 @@ public class StaffWithNoteBlock implements INormalStaffFunction {
 
     @Override
     public void useTick(Level level, Player player, ItemStack stack) {
-        Staffs staffs = stack.get(ModDataComponents.STAFFS.get());
+        Staffs staffs = stack.get(KODataComponents.STAFFS.get());
         NoteBlockInstrument[] values = NoteBlockInstrument.values();
         if (staffs != null) {
             int note = level.random.nextInt(24);

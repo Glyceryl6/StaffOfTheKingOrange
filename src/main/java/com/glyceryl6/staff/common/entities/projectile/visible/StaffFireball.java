@@ -1,6 +1,6 @@
 package com.glyceryl6.staff.common.entities.projectile.visible;
 
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -24,7 +24,7 @@ public class StaffFireball extends SmallFireball {
 
     @Override
     public EntityType<?> getType() {
-        return ModEntityTypes.STAFF_FIREBALL.get();
+        return KOEntityTypes.STAFF_FIREBALL.get();
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.glyceryl6.staff.common.entities;
 
 import com.glyceryl6.staff.common.items.StaffItem;
-import com.glyceryl6.staff.registry.ModEntityTypes;
-import com.glyceryl6.staff.registry.ModItems;
+import com.glyceryl6.staff.registry.KOEntityTypes;
+import com.glyceryl6.staff.registry.KOItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
@@ -31,14 +31,14 @@ public class PlacedStaff extends Entity implements ItemSupplier {
 
     private static final EntityDataAccessor<ItemStack> STAFF_STACK = SynchedEntityData.defineId(PlacedStaff.class, EntityDataSerializers.ITEM_STACK);
     private static final EntityDataAccessor<Float> Y_ROT = SynchedEntityData.defineId(PlacedStaff.class, EntityDataSerializers.FLOAT);
-    private final ItemStack defaultItem = ModItems.STAFF.get().getDefaultInstance();
+    private final ItemStack defaultItem = KOItems.STAFF.get().getDefaultInstance();
 
     public PlacedStaff(EntityType<?> type, Level level) {
         super(type, level);
     }
 
     public PlacedStaff(Level level, BlockPos pos) {
-        this(ModEntityTypes.PLACED_STAFF.get(), level);
+        this(KOEntityTypes.PLACED_STAFF.get(), level);
         this.setPos(pos.getX(), pos.getY(), pos.getZ());
     }
 
@@ -57,7 +57,7 @@ public class PlacedStaff extends Entity implements ItemSupplier {
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        builder.define(STAFF_STACK, ModItems.STAFF.get().getDefaultInstance());
+        builder.define(STAFF_STACK, KOItems.STAFF.get().getDefaultInstance());
         builder.define(Y_ROT, 0.0F);
     }
 

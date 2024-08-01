@@ -1,7 +1,7 @@
 package com.glyceryl6.staff.functions.other;
 
 import com.glyceryl6.staff.api.INormalStaffFunction;
-import com.glyceryl6.staff.registry.ModMobEffects;
+import com.glyceryl6.staff.registry.KOMobEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -39,7 +39,7 @@ public class StaffWithBell implements INormalStaffFunction {
 
     @Override
     public void attackEntity(Level level, Player player, Entity target) {
-        Optional<Holder.Reference<MobEffect>> holder = BuiltInRegistries.MOB_EFFECT.getHolder(ModMobEffects.STUN.getId());
+        Optional<Holder.Reference<MobEffect>> holder = BuiltInRegistries.MOB_EFFECT.getHolder(KOMobEffects.STUN.getId());
         target.playSound(SoundEvents.BELL_BLOCK, 2.0F, 1.0F);
         if (!level.isClientSide && target instanceof LivingEntity entity && holder.isPresent()) {
             entity.addEffect(new MobEffectInstance(holder.get(), 200));

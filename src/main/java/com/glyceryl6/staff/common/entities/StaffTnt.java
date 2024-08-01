@@ -1,6 +1,6 @@
 package com.glyceryl6.staff.common.entities;
 
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,7 +22,7 @@ public class StaffTnt extends PrimedTnt {
 
     @Override
     public EntityType<?> getType() {
-        return ModEntityTypes.STAFF_TNT.get();
+        return KOEntityTypes.STAFF_TNT.get();
     }
 
     @Override

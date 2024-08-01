@@ -4,9 +4,9 @@ import com.glyceryl6.staff.api.IAbstractStaffFunction;
 import com.glyceryl6.staff.api.INormalStaffFunction;
 import com.glyceryl6.staff.api.IPlayerHeadStaffFunction;
 import com.glyceryl6.staff.common.items.StaffItem;
-import com.glyceryl6.staff.registry.ModDataComponents;
-import com.glyceryl6.staff.registry.ModNormalStaffs;
-import com.glyceryl6.staff.registry.ModPlayerHeadStaffs;
+import com.glyceryl6.staff.registry.KODataComponents;
+import com.glyceryl6.staff.registry.KONormalStaffs;
+import com.glyceryl6.staff.registry.KOPlayerHeadStaffs;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.arguments.item.ItemParser;
@@ -39,7 +39,7 @@ public class StaffUniversalUtils {
     public static void setNormalBlockForStaff(ItemStack stack, BlockState state) {
         CompoundTag coreBlock = CustomData.EMPTY.copyTag();
         coreBlock.put("core_block", NbtUtils.writeBlockState(state));
-        stack.set(ModDataComponents.STAFF_CORE_STATE.get(), CustomData.of(coreBlock));
+        stack.set(KODataComponents.STAFF_CORE_STATE.get(), CustomData.of(coreBlock));
     }
 
     public static void setPlayerHeadForStaff(Level level, ItemStack itemInHand, String playerName) {
@@ -76,7 +76,7 @@ public class StaffUniversalUtils {
     }
 
     public static BlockState getCoreBlockState(ItemStack itemInHand) {
-        CustomData customData = itemInHand.get(ModDataComponents.STAFF_CORE_STATE.get());
+        CustomData customData = itemInHand.get(KODataComponents.STAFF_CORE_STATE.get());
         if (customData != null) {
             CompoundTag coreBlock = customData.copyTag().getCompound("core_block");
             return NbtUtils.readBlockState(BuiltInRegistries.BLOCK.asLookup(), coreBlock);
@@ -93,13 +93,13 @@ public class StaffUniversalUtils {
     }
 
     public static INormalStaffFunction getNormalStaffFunction(ItemStack itemInHand) {
-        Map<Block, INormalStaffFunction> map = ModNormalStaffs.NORMAL_STAFF_MAP;
+        Map<Block, INormalStaffFunction> map = KONormalStaffs.NORMAL_STAFF_MAP;
         Block block = getCoreBlockState(itemInHand).getBlock();
         return map.containsKey(block) ? map.get(block) : new INormalStaffFunction() {};
     }
 
     public static IPlayerHeadStaffFunction getPlayerHeadStaffFunction(ItemStack itemInHand) {
-        Map<String, IPlayerHeadStaffFunction> map = ModPlayerHeadStaffs.PLAYER_HEAD_STAFF_MAP;
+        Map<String, IPlayerHeadStaffFunction> map = KOPlayerHeadStaffs.PLAYER_HEAD_STAFF_MAP;
         ResolvableProfile profile = itemInHand.get(DataComponents.PROFILE);
         String name = profile != null ? profile.name().orElse("") : "";
         boolean flag = !name.isEmpty() && map.containsKey(name);

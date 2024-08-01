@@ -9,7 +9,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 /** @noinspection deprecation*/
-public class ModDataComponents {
+public class KODataComponents {
 
     public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENT_TYPE = DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, Main.MOD_ID);
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<CustomData>> STAFF_CORE_STATE = DATA_COMPONENT_TYPE.register("staff_core_state",

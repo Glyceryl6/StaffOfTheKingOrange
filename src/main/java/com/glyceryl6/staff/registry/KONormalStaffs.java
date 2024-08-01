@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.Blocks;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ModNormalStaffs {
+public class KONormalStaffs {
 
     public static final Map<Block, INormalStaffFunction> NORMAL_STAFF_MAP = normalStaffFunctionMap();
 

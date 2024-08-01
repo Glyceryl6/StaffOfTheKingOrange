@@ -2,7 +2,7 @@ package com.glyceryl6.staff.server.network;
 
 import com.glyceryl6.staff.Main;
 import com.glyceryl6.staff.common.items.StaffItem;
-import com.glyceryl6.staff.registry.ModDataComponents;
+import com.glyceryl6.staff.registry.KODataComponents;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
@@ -49,7 +49,7 @@ public record SetStaffBlockC2SPacket(int key) implements CustomPacketPayload {
     private static void addItem(ServerPlayer player, ItemStack mainHandItem, ItemStack offhandItem, InteractionHand hand) {
         if (mainHandItem.getItem() instanceof StaffItem && offhandItem.getItem() instanceof BlockItem blockItem) {
             DataComponentType<ResolvableProfile> profileType = DataComponents.PROFILE;
-            CustomData customData = mainHandItem.get(ModDataComponents.STAFF_CORE_STATE.get());
+            CustomData customData = mainHandItem.get(KODataComponents.STAFF_CORE_STATE.get());
             ResolvableProfile profile = offhandItem.get(profileType);
             if (customData != null) {
                 Block itemBlock = blockItem.getBlock();
@@ -67,7 +67,7 @@ public record SetStaffBlockC2SPacket(int key) implements CustomPacketPayload {
                     }
 
                     player.displayClientMessage(Component.translatable(key, name), Boolean.TRUE);
-                    mainHandItem.set(ModDataComponents.STAFF_CORE_STATE.get(), CustomData.of(coreBlock));
+                    mainHandItem.set(KODataComponents.STAFF_CORE_STATE.get(), CustomData.of(coreBlock));
                     offhandItem.consume(1, player);
                     player.swing(hand, Boolean.TRUE);
                 }

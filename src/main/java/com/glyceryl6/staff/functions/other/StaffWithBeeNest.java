@@ -2,7 +2,7 @@ package com.glyceryl6.staff.functions.other;
 
 import com.glyceryl6.staff.api.INormalStaffFunction;
 import com.glyceryl6.staff.common.entities.Beeper;
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -18,7 +18,7 @@ public class StaffWithBeeNest implements INormalStaffFunction {
 
     @Override
     public void useTick(Level level, Player player, ItemStack stack) {
-        Beeper beeper = ModEntityTypes.BEEPER.get().create(level);
+        Beeper beeper = KOEntityTypes.BEEPER.get().create(level);
         Bee bee = EntityType.BEE.create(level);
         if (!level.isClientSide) {
             double x = player.getRandomX(0.5D);

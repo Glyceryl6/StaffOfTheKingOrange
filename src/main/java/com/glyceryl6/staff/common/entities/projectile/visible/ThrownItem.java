@@ -1,6 +1,6 @@
 package com.glyceryl6.staff.common.entities.projectile.visible;
 
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -22,7 +22,7 @@ public class ThrownItem extends Fireball {
     }
 
     public ThrownItem(LivingEntity shooter, Vec3 movement, Level level) {
-        super(ModEntityTypes.THROWN_ITEM.get(), shooter, movement, level);
+        super(KOEntityTypes.THROWN_ITEM.get(), shooter, movement, level);
     }
 
     @Override

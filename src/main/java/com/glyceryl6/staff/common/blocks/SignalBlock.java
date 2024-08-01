@@ -1,7 +1,7 @@
 package com.glyceryl6.staff.common.blocks;
 
 import com.glyceryl6.staff.common.blocks.entity.SignalBlockEntity;
-import com.glyceryl6.staff.registry.ModBlockEntityTypes;
+import com.glyceryl6.staff.registry.KOBlockEntityTypes;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -57,7 +57,7 @@ public class SignalBlock extends BaseEntityBlock {
 
     @Nullable @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, ModBlockEntityTypes.SIGNAL_BLOCK.get(), SignalBlockEntity::serverTick);
+        return createTickerHelper(blockEntityType, KOBlockEntityTypes.SIGNAL_BLOCK.get(), SignalBlockEntity::serverTick);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.glyceryl6.staff.common.entities.projectile.visible;
 
 import com.glyceryl6.staff.common.entities.projectile.invisible.AbstractInvisibleProjectile;
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -27,7 +27,7 @@ public class MusicalNote extends AbstractInvisibleProjectile {
     }
 
     public MusicalNote(LivingEntity shooter, Vec3 movement, Level level) {
-        super(ModEntityTypes.MUSICAL_NOTE.get(), shooter, movement, level);
+        super(KOEntityTypes.MUSICAL_NOTE.get(), shooter, movement, level);
     }
 
     @Override

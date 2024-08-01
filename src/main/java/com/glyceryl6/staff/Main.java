@@ -1,7 +1,6 @@
 package com.glyceryl6.staff;
 
 import com.glyceryl6.staff.registry.*;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -13,19 +12,15 @@ import java.util.Locale;
 public class Main {
 
     public static final String MOD_ID = "staff_of_the_king_orange";
-    public static final ModelLayerLocation STAFF_LAYER = new ModelLayerLocation(prefix("staff"), "main");
-    public static final ModelLayerLocation BEEPER_LAYER = new ModelLayerLocation(prefix("beeper"), "main");
-    public static final ModelLayerLocation PLAYER_HEAD_LAYER = new ModelLayerLocation(prefix("player_head"), "main");
-    public static final ModelLayerLocation STALAGMITE_LAYER = new ModelLayerLocation(prefix("stalagmite"), "main");
 
     public Main(IEventBus modEventBus, ModContainer modContainer) {
-        ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
-        ModDataComponents.DATA_COMPONENT_TYPE.register(modEventBus);
-        ModParticleTypes.PARTICLE_TYPES.register(modEventBus);
-        ModEntityTypes.ENTITY_TYPES.register(modEventBus);
-        ModMobEffects.MOB_EFFECTS.register(modEventBus);
-        ModBlocks.BLOCKS.register(modEventBus);
-        ModItems.ITEMS.register(modEventBus);
+        KOBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
+        KODataComponents.DATA_COMPONENT_TYPE.register(modEventBus);
+        KOParticleTypes.PARTICLE_TYPES.register(modEventBus);
+        KOEntityTypes.ENTITY_TYPES.register(modEventBus);
+        KOMobEffects.MOB_EFFECTS.register(modEventBus);
+        KOBlocks.BLOCKS.register(modEventBus);
+        KOItems.ITEMS.register(modEventBus);
     }
 
     public static ResourceLocation prefix(String name) {

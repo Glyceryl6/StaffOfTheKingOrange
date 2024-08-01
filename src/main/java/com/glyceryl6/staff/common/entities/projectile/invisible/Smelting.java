@@ -1,6 +1,6 @@
 package com.glyceryl6.staff.common.entities.projectile.invisible;
 
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import com.glyceryl6.staff.utils.StaffSpecialUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -23,7 +23,7 @@ public class Smelting extends AbstractInvisibleProjectile {
     }
 
     public Smelting(LivingEntity shooter, Vec3 movement, Level level) {
-        super(ModEntityTypes.SMELTING.get(), shooter, movement, level);
+        super(KOEntityTypes.SMELTING.get(), shooter, movement, level);
     }
 
     @Override

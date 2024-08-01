@@ -10,7 +10,7 @@ import net.minecraft.world.entity.MobCategory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class ModEntityTypes {
+public class KOEntityTypes {
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Registries.ENTITY_TYPE, Main.MOD_ID);
     public static final DeferredHolder<EntityType<?>, EntityType<StaffTnt>> STAFF_TNT = ENTITY_TYPES.register("staff_tnt",

@@ -4,8 +4,8 @@ import com.glyceryl6.staff.api.IAbstractStaffFunction;
 import com.glyceryl6.staff.client.renderer.StaffItemRenderer;
 import com.glyceryl6.staff.common.entities.PlacedStaff;
 import com.glyceryl6.staff.component.Staffs;
-import com.glyceryl6.staff.registry.ModDataComponents;
-import com.glyceryl6.staff.registry.ModItems;
+import com.glyceryl6.staff.registry.KODataComponents;
+import com.glyceryl6.staff.registry.KOItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.ChatFormatting;
@@ -61,7 +61,7 @@ public class StaffItem extends Item {
     }
 
     private boolean isContinuousMode(ItemStack stack) {
-        Staffs staffs = stack.get(ModDataComponents.STAFFS.get());
+        Staffs staffs = stack.get(KODataComponents.STAFFS.get());
         return staffs != null && staffs.continuousMode();
     }
 
@@ -82,7 +82,7 @@ public class StaffItem extends Item {
                 BlockState state = getCoreBlockState(stack);
                 if (state.getBlock() instanceof NoteBlock) {
                     int note = level.random.nextInt(NoteBlockInstrument.values().length);
-                    stack.set(ModDataComponents.STAFFS.get(), new Staffs(Boolean.TRUE, Boolean.TRUE, note));
+                    stack.set(KODataComponents.STAFFS.get(), new Staffs(Boolean.TRUE, Boolean.TRUE, note));
                 }
             }
         }
@@ -212,8 +212,8 @@ public class StaffItem extends Item {
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         DataComponentType<ItemAttributeModifiers> attributes = DataComponents.ATTRIBUTE_MODIFIERS;
-        DataComponentType<CustomData> coreState = ModDataComponents.STAFF_CORE_STATE.get();
-        DataComponentType<Staffs> staffs = ModDataComponents.STAFFS.get();
+        DataComponentType<CustomData> coreState = KODataComponents.STAFF_CORE_STATE.get();
+        DataComponentType<Staffs> staffs = KODataComponents.STAFFS.get();
         stack.set(attributes, getStaffFunction(stack).addAttributes(stack));
         if (stack.get(coreState) == null) {
             setNormalBlockForStaff(stack, Blocks.COMMAND_BLOCK.defaultBlockState());
@@ -242,7 +242,7 @@ public class StaffItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        Staffs staffs = stack.get(ModDataComponents.STAFFS.get());
+        Staffs staffs = stack.get(KODataComponents.STAFFS.get());
         Block block = getCoreBlockState(stack).getBlock();
         ResolvableProfile profile = stack.get(DataComponents.PROFILE);
         MutableComponent literal = Component.literal(block.getName().getString());
@@ -284,7 +284,7 @@ public class StaffItem extends Item {
 
         @Override
         public HumanoidModel.@Nullable ArmPose getArmPose(LivingEntity entityLiving, InteractionHand hand, ItemStack itemStack) {
-            if (itemStack.is(ModItems.STAFF.get()) && entityLiving.getUsedItemHand() == hand && entityLiving.getUseItemRemainingTicks() > 0) {
+            if (itemStack.is(KOItems.STAFF.get()) && entityLiving.getUsedItemHand() == hand && entityLiving.getUseItemRemainingTicks() > 0) {
                 return STAFF_USING.getValue();
             }
 

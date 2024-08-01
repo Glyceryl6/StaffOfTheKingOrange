@@ -1,8 +1,8 @@
 package com.glyceryl6.staff.common.entities;
 
 import com.glyceryl6.staff.api.IHasCobwebHookEntity;
-import com.glyceryl6.staff.registry.ModEntityTypes;
-import com.glyceryl6.staff.registry.ModItems;
+import com.glyceryl6.staff.registry.KOEntityTypes;
+import com.glyceryl6.staff.registry.KOItems;
 import com.glyceryl6.staff.utils.StaffUniversalUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -36,7 +36,7 @@ public class CobwebHook extends Projectile {
     }
 
     public CobwebHook(Level level, Player player) {
-        this(ModEntityTypes.COBWEB_HOOK.get(), level);
+        this(KOEntityTypes.COBWEB_HOOK.get(), level);
         this.setOwner(player);
         this.setPos(player.getX(), player.getEyeY() - 0.1D, player.getZ());
         this.setDeltaMovement(player.getViewVector(1.0F).scale(5.0F));
@@ -76,7 +76,7 @@ public class CobwebHook extends Projectile {
     private boolean isPlayerHoldingCobwebStaff(Player player) {
         return player.isHolding(stack -> {
             BlockState state = StaffUniversalUtils.getCoreBlockState(stack);
-            return stack.is(ModItems.STAFF.get()) && state.is(Blocks.COBWEB);
+            return stack.is(KOItems.STAFF.get()) && state.is(Blocks.COBWEB);
         });
     }
 

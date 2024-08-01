@@ -1,6 +1,6 @@
 package com.glyceryl6.staff.common.blocks.entity;
 
-import com.glyceryl6.staff.registry.ModBlockEntityTypes;
+import com.glyceryl6.staff.registry.KOBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -13,7 +13,7 @@ public class SignalBlockEntity extends BlockEntity {
     public int removeCountdown;
 
     public SignalBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntityTypes.SIGNAL_BLOCK.get(), pos, blockState);
+        super(KOBlockEntityTypes.SIGNAL_BLOCK.get(), pos, blockState);
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, SignalBlockEntity blockEntity) {

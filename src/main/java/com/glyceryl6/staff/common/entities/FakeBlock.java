@@ -1,6 +1,6 @@
 package com.glyceryl6.staff.common.entities;
 
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -32,7 +32,7 @@ public class FakeBlock extends Entity {
     }
 
     public FakeBlock(Level level, BlockPos pos) {
-        this(ModEntityTypes.FAKE_BLOCK.get(), level);
+        this(KOEntityTypes.FAKE_BLOCK.get(), level);
         this.setPos(pos.getX(), pos.getY(), pos.getZ());
     }
 

@@ -13,7 +13,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 @EventBusSubscriber(modid = Main.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class ModParticleTypes {
+public class KOParticleTypes {
 
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(Registries.PARTICLE_TYPE, Main.MOD_ID);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> HUGE_ENCHANT = PARTICLE_TYPES.register("huge_enchant", () -> new SimpleParticleType(Boolean.FALSE));

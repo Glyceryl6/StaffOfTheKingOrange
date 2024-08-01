@@ -1,7 +1,7 @@
 package com.glyceryl6.staff.client.renderer;
 
 import com.glyceryl6.staff.common.entities.CobwebHook;
-import com.glyceryl6.staff.registry.ModItems;
+import com.glyceryl6.staff.registry.KOItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -39,7 +39,7 @@ public class CobwebHookRenderer extends EntityRenderer<CobwebHook> {
             double x = Mth.lerp(partialTick, entity.xo, entity.getX());
             double y = Mth.lerp(partialTick, entity.yo, entity.getY()) + (double)entity.getEyeHeight();
             double z = Mth.lerp(partialTick, entity.zo, entity.getZ());
-            Vec3 vec3d = this.getPlayerHandPos(player, entityYaw, partialTick, ModItems.STAFF.get());
+            Vec3 vec3d = this.getPlayerHandPos(player, entityYaw, partialTick, KOItems.STAFF.get());
             Vec3 vec3d2 = new Vec3(x, y, z);
             float h = (float)entity.tickCount + partialTick;
             float j = h * 0.15f % 1.0f;

@@ -1,6 +1,6 @@
 package com.glyceryl6.staff.common.entities.projectile.invisible;
 
-import com.glyceryl6.staff.registry.ModEntityTypes;
+import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -29,7 +29,7 @@ public class BoneMeal extends AbstractInvisibleProjectile {
     }
 
     public BoneMeal(LivingEntity shooter, Vec3 movement, Level level) {
-        super(ModEntityTypes.BONE_MEAL.get(), shooter, movement, level);
+        super(KOEntityTypes.BONE_MEAL.get(), shooter, movement, level);
     }
 
     @Nullable @Override
