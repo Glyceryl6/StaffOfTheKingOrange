@@ -1,6 +1,6 @@
 package com.glyceryl6.staff.client.renderer;
 
-import com.glyceryl6.staff.Main;
+import com.glyceryl6.staff.client.model.geom.KOModelLayers;
 import com.glyceryl6.staff.common.entities.projectile.visible.AbstractPlayerHead;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -27,7 +27,7 @@ public class SkullRenderer extends EntityRenderer<AbstractPlayerHead> {
 
     public SkullRenderer(EntityRendererProvider.Context context) {
         super(context);
-        this.model = new SkullModel(context.bakeLayer(Main.PLAYER_HEAD_LAYER));
+        this.model = new SkullModel(context.bakeLayer(KOModelLayers.PLAYER_HEAD_LAYER));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.glyceryl6.staff.client.renderer;
 
 import com.glyceryl6.staff.Main;
+import com.glyceryl6.staff.client.model.geom.KOModelLayers;
 import com.glyceryl6.staff.common.entities.Beeper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.BeeModel;
@@ -20,7 +21,7 @@ public class BeeperRenderer extends MobRenderer<Beeper, BeeModel<Beeper>> {
     private static final ResourceLocation NECTAR_BEEPER_TEXTURE = Main.prefix("textures/entity/beeper/beeper_nectar.png");
     
     public BeeperRenderer(EntityRendererProvider.Context context) {
-        super(context, new BeeModel<>(context.bakeLayer(Main.BEEPER_LAYER)), 0.4F);
+        super(context, new BeeModel<>(context.bakeLayer(KOModelLayers.BEEPER_LAYER)), 0.4F);
     }
 
     @Override

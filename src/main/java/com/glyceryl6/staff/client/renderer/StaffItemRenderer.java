@@ -2,6 +2,7 @@ package com.glyceryl6.staff.client.renderer;
 
 import com.glyceryl6.staff.Main;
 import com.glyceryl6.staff.client.model.StaffModel;
+import com.glyceryl6.staff.client.model.geom.KOModelLayers;
 import com.glyceryl6.staff.common.items.StaffItem;
 import com.glyceryl6.staff.event.ModEventFactory;
 import com.glyceryl6.staff.utils.StaffUniversalUtils;
@@ -68,7 +69,7 @@ public class StaffItemRenderer extends BlockEntityWithoutLevelRenderer {
         ModelPart decoratedPotBase = entityModelSet.bakeLayer(ModelLayers.DECORATED_POT_BASE);
         ModelPart decoratedPotSide = entityModelSet.bakeLayer(ModelLayers.DECORATED_POT_SIDES);
         this.skullModelByType = SkullBlockRenderer.createSkullRenderers(entityModelSet);
-        this.staffModel = new StaffModel(entityModelSet.bakeLayer(Main.STAFF_LAYER));
+        this.staffModel = new StaffModel(entityModelSet.bakeLayer(KOModelLayers.STAFF_LAYER));
         this.bellBody = entityModelSet.bakeLayer(ModelLayers.BELL);
         this.neck = decoratedPotBase.getChild("neck");
         this.top = decoratedPotBase.getChild("top");

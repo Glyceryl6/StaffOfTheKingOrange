@@ -2,6 +2,7 @@ package com.glyceryl6.staff.client.renderer;
 
 import com.glyceryl6.staff.Main;
 import com.glyceryl6.staff.client.model.StalagmiteModel;
+import com.glyceryl6.staff.client.model.geom.KOModelLayers;
 import com.glyceryl6.staff.common.entities.Stalagmite;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -20,7 +21,7 @@ public class StalagmiteRenderer extends EntityRenderer<Stalagmite> {
 
     public StalagmiteRenderer(EntityRendererProvider.Context context) {
         super(context);
-        this.model = new StalagmiteModel(context.bakeLayer(Main.STALAGMITE_LAYER));
+        this.model = new StalagmiteModel(context.bakeLayer(KOModelLayers.STALAGMITE_LAYER));
     }
 
     @Override

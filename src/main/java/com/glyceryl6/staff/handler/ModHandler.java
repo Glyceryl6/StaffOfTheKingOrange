@@ -3,11 +3,12 @@ package com.glyceryl6.staff.handler;
 import com.glyceryl6.staff.Main;
 import com.glyceryl6.staff.client.model.StaffModel;
 import com.glyceryl6.staff.client.model.StalagmiteModel;
+import com.glyceryl6.staff.client.model.geom.KOModelLayers;
 import com.glyceryl6.staff.client.renderer.*;
 import com.glyceryl6.staff.common.items.StaffItem;
-import com.glyceryl6.staff.registry.ModEntityTypes;
-import com.glyceryl6.staff.registry.ModItems;
-import com.glyceryl6.staff.registry.ModKeyMappings;
+import com.glyceryl6.staff.registry.KOEntityTypes;
+import com.glyceryl6.staff.registry.KOItems;
+import com.glyceryl6.staff.registry.KOKeyMappings;
 import com.glyceryl6.staff.server.network.RandomChangeStaffBlockC2SPacket;
 import com.glyceryl6.staff.server.network.SetStaffBlockC2SPacket;
 import com.glyceryl6.staff.server.network.StaffContinuousModeC2SPacket;
@@ -38,52 +39,52 @@ public class ModHandler {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(ModEntityTypes.STAFF_TNT.get(), TntRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.STAFF_WITHER_SKULL.get(), WitherSkullRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.STAFF_FIREBALL.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.THROWN_ITEM.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.BONE_MEAL.get(), EmptyRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.ENCHANT.get(), EmptyRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.ICE_BOMB.get(), EmptyRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.SIGNAL.get(), EmptyRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.SMELTING.get(), EmptyRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.MUSICAL_NOTE.get(), MusicalNoteRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.FAKE_BLOCK.get(), FakeBlockRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.PLACED_STAFF.get(), PlacedStaffRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.STALAGMITE.get(), StalagmiteRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.BEEPER.get(), BeeperRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.HEROBRINE_HEAD.get(), SkullRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.COBWEB_HOOK.get(), CobwebHookRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.COBWEB.get(), context ->
+        event.registerEntityRenderer(KOEntityTypes.STAFF_TNT.get(), TntRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.STAFF_WITHER_SKULL.get(), WitherSkullRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.STAFF_FIREBALL.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.THROWN_ITEM.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.BONE_MEAL.get(), EmptyRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.ENCHANT.get(), EmptyRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.ICE_BOMB.get(), EmptyRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.SIGNAL.get(), EmptyRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.SMELTING.get(), EmptyRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.MUSICAL_NOTE.get(), MusicalNoteRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.FAKE_BLOCK.get(), FakeBlockRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.PLACED_STAFF.get(), PlacedStaffRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.STALAGMITE.get(), StalagmiteRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.BEEPER.get(), BeeperRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.HEROBRINE_HEAD.get(), SkullRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.COBWEB_HOOK.get(), CobwebHookRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.COBWEB.get(), context ->
                 new ThrownItemRenderer<>(context, 2.0F, Boolean.FALSE));
     }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(Main.STAFF_LAYER, StaffModel::createBodyLayer);
-        event.registerLayerDefinition(Main.BEEPER_LAYER, BeeModel::createBodyLayer);
-        event.registerLayerDefinition(Main.PLAYER_HEAD_LAYER, SkullModel::createHumanoidHeadLayer);
-        event.registerLayerDefinition(Main.STALAGMITE_LAYER, StalagmiteModel::createBodyLayer);
+        event.registerLayerDefinition(KOModelLayers.STAFF_LAYER, StaffModel::createBodyLayer);
+        event.registerLayerDefinition(KOModelLayers.BEEPER_LAYER, BeeModel::createBodyLayer);
+        event.registerLayerDefinition(KOModelLayers.PLAYER_HEAD_LAYER, SkullModel::createHumanoidHeadLayer);
+        event.registerLayerDefinition(KOModelLayers.STALAGMITE_LAYER, StalagmiteModel::createBodyLayer);
     }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
-        event.registerItem(new StaffItem.CustomRenderer(), ModItems.STAFF.get());
+        event.registerItem(new StaffItem.CustomRenderer(), KOItems.STAFF.get());
     }
 
     @SubscribeEvent
     public static void addEntityAttributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntityTypes.BEEPER.get(), Bee.createAttributes().build());
+        event.put(KOEntityTypes.BEEPER.get(), Bee.createAttributes().build());
     }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerKeys(RegisterKeyMappingsEvent event) {
-        event.register(ModKeyMappings.ADD_REMOVE_KEYBINDING);
-        event.register(ModKeyMappings.RANDOM_CHANGE_KEYBINDING);
-        event.register(ModKeyMappings.CONTINUOUS_MODE_KEYBINDING);
+        event.register(KOKeyMappings.ADD_REMOVE_KEYBINDING);
+        event.register(KOKeyMappings.RANDOM_CHANGE_KEYBINDING);
+        event.register(KOKeyMappings.CONTINUOUS_MODE_KEYBINDING);
     }
 
     @SubscribeEvent
@@ -103,14 +104,14 @@ public class ModHandler {
     @SubscribeEvent
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
-            event.accept(ModItems.STAFF.get());
+            event.accept(KOItems.STAFF.get());
         }
     }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerItemProperties(FMLClientSetupEvent event) {
-        ItemProperties.register(ModItems.STAFF.get(), Main.prefix("using"), ((stack, level, entity, seed) ->
+        ItemProperties.register(KOItems.STAFF.get(), Main.prefix("using"), ((stack, level, entity, seed) ->
                 entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F));
     }
 
