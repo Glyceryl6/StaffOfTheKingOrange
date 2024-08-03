@@ -2,21 +2,17 @@ package com.glyceryl6.staff.common.items;
 
 import com.glyceryl6.staff.api.IAbstractStaffFunction;
 import com.glyceryl6.staff.client.renderer.StaffItemRenderer;
-import com.glyceryl6.staff.common.entities.PlacedStaff;
 import com.glyceryl6.staff.component.Staffs;
 import com.glyceryl6.staff.registry.KODataComponents;
 import com.glyceryl6.staff.registry.KOItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -34,13 +30,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
-import net.minecraft.world.item.component.CustomData;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.ResolvableProfile;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.NoteBlock;
+import net.minecraft.world.level.block.PlayerHeadBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -115,31 +112,7 @@ public class StaffItem extends Item {
     @Override
     public InteractionResult useOn(UseOnContext context) {
         ItemStack itemInHand = context.getItemInHand();
-        Player player = context.getPlayer();
         Level level = context.getLevel();
-        if (player != null && player.isShiftKeyDown()) {
-            BlockPos pos = context.getClickedPos().above();
-            BlockState state = level.getBlockState(pos);
-            if (!level.isClientSide && state.canBeReplaced()) {
-                PlacedStaff staff = new PlacedStaff(level, pos);
-                Direction direction = player.getDirection();
-                Direction defaultDirection = player.getDirection();
-                Direction.Axis axis = direction.getAxis();
-                Direction cw = direction.getClockWise();
-                Direction ccw = direction.getCounterClockWise();
-                if (axis.isHorizontal()) {
-                    defaultDirection = axis == Direction.Axis.X ? cw : ccw;
-                }
-
-                staff.setYRot(defaultDirection.toYRot());
-                staff.setItem(itemInHand);
-                level.addFreshEntity(staff);
-                itemInHand.consume(1, player);
-            }
-
-            return InteractionResult.sidedSuccess(level.isClientSide);
-        }
-
         IAbstractStaffFunction function = getStaffFunction(itemInHand);
         if (function.enableUse()) {
             if (function.canPlaceBlock(context)) {
@@ -211,22 +184,12 @@ public class StaffItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        DataComponentType<ItemAttributeModifiers> attributes = DataComponents.ATTRIBUTE_MODIFIERS;
-        DataComponentType<CustomData> coreState = KODataComponents.STAFF_CORE_STATE.get();
-        DataComponentType<Staffs> staffs = KODataComponents.STAFFS.get();
-        stack.set(attributes, getStaffFunction(stack).addAttributes(stack));
-        if (stack.get(coreState) == null) {
-            setNormalBlockForStaff(stack, Blocks.COMMAND_BLOCK.defaultBlockState());
-        }
-
-        if (stack.get(staffs) == null) {
-            stack.set(staffs, new Staffs(Boolean.TRUE, Boolean.TRUE, 0));
-        }
+        setDefaultComponent(stack);
     }
 
     @Override
     public Component getName(ItemStack stack) {
-        String key = "item.staff_of_the_king_orange.custom_staff";
+        String key = KOItems.STAFF.get().getDescriptionId();
         BlockState state = getCoreBlockState(stack);
         String name = state.getBlock().getName().getString();
         ResolvableProfile profile = stack.get(DataComponents.PROFILE);
@@ -254,10 +217,7 @@ public class StaffItem extends Item {
             }
         }
 
-        Component component = literal.withStyle(ChatFormatting.GOLD);
-        tooltipComponents.add(Component.translatable("tooltip.staff.core_block")
-                .withStyle(ChatFormatting.GREEN).append(component));
-
+        tooltipComponents.add(Component.translatable("tooltip.staff.core_block", literal.getString()));
         if (staffs != null) {
             staffs.addToTooltip(context, tooltipComponents::add, tooltipFlag);
         }

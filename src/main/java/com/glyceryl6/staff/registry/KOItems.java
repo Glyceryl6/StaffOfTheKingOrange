@@ -6,9 +6,12 @@ import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import static com.glyceryl6.staff.utils.KOItemRegUtils.spawnEgg;
+
 public class KOItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.createItems(Main.MOD_ID);
     public static final DeferredHolder<Item, Item> STAFF = ITEMS.register("staff", StaffItem::new);
+    public static final DeferredHolder<Item, Item> BEEPER_SPAWN_EGG = spawnEgg("beeper", KOEntityTypes.BEEPER, 894731, 4400155);
 
 }

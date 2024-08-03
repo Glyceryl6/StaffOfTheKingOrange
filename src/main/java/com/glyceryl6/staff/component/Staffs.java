@@ -2,7 +2,6 @@ package com.glyceryl6.staff.component;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -28,8 +27,8 @@ public record Staffs(boolean isEffective, boolean continuousMode, int note) impl
     @Override
     public void addToTooltip(Item.TooltipContext context, Consumer<Component> tooltipAdder, TooltipFlag tooltipFlag) {
         String key = "tooltip.staff.continuous_mode";
-        Component component = Component.translatable(key + "." + this.continuousMode).withStyle(ChatFormatting.LIGHT_PURPLE);
-        tooltipAdder.accept(Component.translatable(key).withStyle(ChatFormatting.AQUA).append(component));
+        Component component = Component.translatable(key + "." + this.continuousMode);
+        tooltipAdder.accept(Component.translatable(key).append(component));
     }
 
 }
