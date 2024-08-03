@@ -1,0 +1,23 @@
+{
+  "block.staff_of_the_king_orange.signal_block": "Signal Block",
+  "entity.staff_of_the_king_orange.beeper": "Beeper",
+  "entity.staff_of_the_king_orange.bone_meal": "Bone Meal",
+  "entity.staff_of_the_king_orange.ice_bomb": "Ice Bomb",
+  "entity.staff_of_the_king_orange.musical_note": "Musical Note",
+  "entity.staff_of_the_king_orange.staff_fireball": "Staff Fireball",
+  "entity.staff_of_the_king_orange.staff_tnt": "Staff TNT",
+  "entity.staff_of_the_king_orange.staff_wither_skull": "Staff Wither Skull",
+  "item.staff_of_the_king_orange.beeper_spawn_egg": "Beeper Spawn Egg",
+  "item.staff_of_the_king_orange.staff": "Staff with %s",
+  "itemGroup.staff_of_the_king_orange": "§6§lStaff of The King Orange",
+  "key.categories.staff_of_the_king_orange": "§6§lStaff of The King Orange",
+  "key.staff.add_remove_block": "Add/Remove block",
+  "key.staff.continuous_mode": "Switch Continuous Mode",
+  "key.staff.random_change_block": "Random change block",
+  "message.staff.normal_block_change": "The core block is change to: %s",
+  "message.staff.player_head_change": "The core block is change to: %s's head",
+  "tooltip.staff.continuous_mode": "§bContinuous Mode: ",
+  "tooltip.staff.continuous_mode.false": "§dOFF",
+  "tooltip.staff.continuous_mode.true": "§dON",
+  "tooltip.staff.core_block": "§aCore Block: §6§r%s"
+}
