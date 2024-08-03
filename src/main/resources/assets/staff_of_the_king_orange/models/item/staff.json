@@ -2,13 +2,11 @@
     "parent": "builtin/entity",
     "display": {
         "thirdperson_righthand": {
-            "rotation": [-90, 90, 0],
-            "translation": [0, -1.75, -10],
+            "translation": [0, 15, 0],
             "scale": [0.6, 0.6, 0.6]
         },
         "thirdperson_lefthand": {
-            "rotation": [-90, 90, 0],
-            "translation": [0, -1.75, -10],
+            "translation": [0, 15, 0],
             "scale": [0.6, 0.6, 0.6]
         },
         "firstperson_righthand": {
@@ -35,5 +33,13 @@
             "rotation": [-90, 45, 90],
             "translation": [0, 0, -0.5]
         }
-    }
+    },
+    "overrides": [
+        {
+            "model": "staff_of_the_king_orange:item/staff_using",
+            "predicate": {
+                "staff_of_the_king_orange:using": 1.0
+            }
+        }
+    ]
 }
