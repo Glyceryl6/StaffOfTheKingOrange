@@ -14,6 +14,8 @@ public class KODataComponents {
     public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENT_TYPE = DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, Main.MOD_ID);
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<CustomData>> STAFF_CORE_STATE = DATA_COMPONENT_TYPE.register("staff_core_state",
             () -> DataComponentType.<CustomData>builder().persistent(CustomData.CODEC).networkSynchronized(CustomData.STREAM_CODEC).cacheEncoding().build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<CustomData>> STAFF_COMMAND = DATA_COMPONENT_TYPE.register("staff_command",
+            () -> DataComponentType.<CustomData>builder().persistent(CustomData.CODEC).networkSynchronized(CustomData.STREAM_CODEC).cacheEncoding().build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Staffs>> STAFFS = DATA_COMPONENT_TYPE.register("staffs",
             () -> DataComponentType.<Staffs>builder().persistent(Staffs.CODEC).networkSynchronized(Staffs.STREAM_CODEC).cacheEncoding().build());
 

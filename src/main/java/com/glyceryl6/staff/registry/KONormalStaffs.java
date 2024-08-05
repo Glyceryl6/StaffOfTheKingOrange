@@ -45,6 +45,7 @@ public class KONormalStaffs {
         map.put(Blocks.DRIPSTONE_BLOCK, new StaffWithDripstoneBlock());
         map.put(Blocks.REDSTONE_BLOCK, new StaffWithRedstoneBlock());
         map.put(Blocks.SCULK_CATALYST, new StaffWithSculkCatalyst());
+        map.put(Blocks.COMMAND_BLOCK, new StaffWithCommandBlock());
         map.put(Blocks.DIAMOND_BLOCK, new StaffWithDiamondBlock());
         map.put(Blocks.BREWING_STAND, new StaffWithBrewingStand());
         map.put(Blocks.LIGHTNING_ROD, new StaffWithLightningRod());

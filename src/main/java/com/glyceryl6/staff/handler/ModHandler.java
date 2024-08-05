@@ -11,6 +11,7 @@ import com.glyceryl6.staff.registry.KOItems;
 import com.glyceryl6.staff.registry.KOKeyMappings;
 import com.glyceryl6.staff.server.network.RandomChangeStaffBlockC2SPacket;
 import com.glyceryl6.staff.server.network.SetStaffBlockC2SPacket;
+import com.glyceryl6.staff.server.network.SetStaffCommandC2SPacket;
 import com.glyceryl6.staff.server.network.StaffContinuousModeC2SPacket;
 import net.minecraft.client.model.BeeModel;
 import net.minecraft.client.model.SkullModel;
@@ -42,7 +43,7 @@ public class ModHandler {
         event.registerEntityRenderer(KOEntityTypes.STAFF_TNT.get(), TntRenderer::new);
         event.registerEntityRenderer(KOEntityTypes.STAFF_WITHER_SKULL.get(), WitherSkullRenderer::new);
         event.registerEntityRenderer(KOEntityTypes.STAFF_FIREBALL.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer(KOEntityTypes.THROWN_ITEM.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(KOEntityTypes.THROWN_BOOK_AND_PAPER.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(KOEntityTypes.BONE_MEAL.get(), EmptyRenderer::new);
         event.registerEntityRenderer(KOEntityTypes.ENCHANT.get(), EmptyRenderer::new);
         event.registerEntityRenderer(KOEntityTypes.ICE_BOMB.get(), EmptyRenderer::new);
@@ -96,6 +97,9 @@ public class ModHandler {
         registrar.playToServer(SetStaffBlockC2SPacket.TYPE,
                 SetStaffBlockC2SPacket.STREAM_CODEC,
                 SetStaffBlockC2SPacket::serverSideHandle);
+        registrar.playToServer(SetStaffCommandC2SPacket.TYPE,
+                SetStaffCommandC2SPacket.STREAM_CODEC,
+                SetStaffCommandC2SPacket::serverSideHandle);
         registrar.playToServer(StaffContinuousModeC2SPacket.TYPE,
                 StaffContinuousModeC2SPacket.STREAM_CODEC,
                 StaffContinuousModeC2SPacket::serverSideHandle);

@@ -39,10 +39,15 @@ import java.util.Map;
 public class StaffUniversalUtils {
 
     public static void setDefaultComponent(ItemStack stack) {
+        DataComponentType<CustomData> command = KODataComponents.STAFF_COMMAND.get();
         DataComponentType<Staffs> staffs = KODataComponents.STAFFS.get();
         stack.set(DataComponents.ATTRIBUTE_MODIFIERS, getStaffFunction(stack).addAttributes(stack));
         if (stack.get(KODataComponents.STAFF_CORE_STATE.get()) == null) {
             setNormalBlockForStaff(stack, Blocks.COMMAND_BLOCK.defaultBlockState());
+        }
+
+        if (stack.get(command) == null) {
+            stack.set(command, CustomData.EMPTY);
         }
 
         if (stack.get(staffs) == null) {
