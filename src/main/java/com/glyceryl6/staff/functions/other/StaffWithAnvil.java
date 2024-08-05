@@ -10,7 +10,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 
-import java.util.UUID;
 import java.util.function.Supplier;
 
 public record StaffWithAnvil(double speed, double damage) implements INormalStaffFunction {

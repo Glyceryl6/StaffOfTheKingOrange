@@ -14,19 +14,14 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class Cobweb extends ThrownItem {
+public class Cobweb extends AbstractThrownItem {
 
-    public Cobweb(EntityType<? extends ThrownItem> type, Level level) {
+    public Cobweb(EntityType<? extends AbstractThrownItem> type, Level level) {
         super(type, level);
     }
 
     public Cobweb(LivingEntity shooter, Vec3 movement, Level level) {
-        super(shooter, movement, level);
-    }
-
-    @Override
-    public EntityType<?> getType() {
-        return KOEntityTypes.COBWEB.get();
+        super(KOEntityTypes.COBWEB.get(), shooter, movement, level);
     }
 
     @Override
