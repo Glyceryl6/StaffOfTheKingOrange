@@ -22,6 +22,7 @@ public class KODataGenerator {
         PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+        generator.addProvider(event.includeServer(), new RegistryDataGenerator(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), new KOItemModelProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeServer(), new KOLanguageProvider(packOutput, "en_us"));
         generator.addProvider(event.includeServer(), new KOLanguageProvider(packOutput, "zh_cn"));

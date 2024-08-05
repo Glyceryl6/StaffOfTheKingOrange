@@ -53,6 +53,14 @@ public class KOLanguageProvider extends LanguageProvider {
         this.add(KOKeyMappings.CONTINUOUS_MODE_KEYBINDING.getName(), "Switch Continuous Mode", "切换连续模式");
         this.addMessages("normal_block_change", "The core block is change to: %s", "核心方块已更改为：%s");
         this.addMessages("player_head_change", "The core block is change to: %s's head", "核心方块已更改为：%s的头");
+        this.addDeathMessages("redstoneBeam", "%1$s was killed by the redstone beam", "%1$s被红石射线杀死了");
+        this.addDeathMessages("redstoneBeam.player", "%1$s was killed by %2$s using redstone beam", "%1$s被%2$s用红石射线杀死了");
+        this.addDeathMessages("knowledge", "%1$s feeling the power of knowledge", "%1$s感受到了知识的力量");
+        this.addDeathMessages("knowledge.player", "%2$s made 1$s feeling the power of knowledge", "%2$s让%1$s感受到了知识的力量");
+        this.addDeathMessages("anvilThump", "%1$s received a thump from the anvil", "%1$s受到了一记铁砧的重击");
+        this.addDeathMessages("anvilThump.player", "%1$s received a thump from %2$s's anvil", "%1$s受到了来自%2$s一记铁砧的重击");
+        this.addDeathMessages("noise", "%1$s was killed by the noise", "%1$s被噪音给吵死了");
+        this.addDeathMessages("noise.player", "%1$s was killed by %2$s using noise", "%1$s被%2$s使用噪音给吵死了");
         this.addTooltips("continuous_mode", "§bContinuous Mode: ", "§b连续模式：");
         this.addTooltips("continuous_mode.true", "§dON", "§d开");
         this.addTooltips("continuous_mode.false", "§dOFF", "§d关");
@@ -95,6 +103,10 @@ public class KOLanguageProvider extends LanguageProvider {
 
     private void addMessages(String key, String en, String cn) {
         this.add("message.staff." + key, en, cn);
+    }
+
+    private void addDeathMessages(String key, String en, String cn) {
+        this.add("death.attack." + key, en, cn);
     }
 
     private void addTooltips(Supplier<Item> key, String en, String cn) {

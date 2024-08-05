@@ -2,6 +2,7 @@ package com.glyceryl6.staff.common.entities.projectile.invisible;
 
 import com.glyceryl6.staff.common.blocks.entity.SignalBlockEntity;
 import com.glyceryl6.staff.registry.KOBlocks;
+import com.glyceryl6.staff.registry.KODamageTypes;
 import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -32,7 +33,7 @@ public class Signal extends AbstractInvisibleProjectile {
     @Override
     protected void onHitEntity(EntityHitResult result) {
         if (!this.level().isClientSide && result.getEntity() instanceof LivingEntity entity) {
-            entity.hurt(this.damageSources().magic(), 2.0F);
+            entity.hurt(this.damageSources().source(KODamageTypes.REDSTONE_BEAM, (this), this.getOwner()), 2.0F);
             entity.invulnerableTime = 0;
         }
     }

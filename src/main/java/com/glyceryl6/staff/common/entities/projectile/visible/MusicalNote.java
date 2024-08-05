@@ -1,6 +1,7 @@
 package com.glyceryl6.staff.common.entities.projectile.visible;
 
 import com.glyceryl6.staff.common.entities.projectile.invisible.AbstractInvisibleProjectile;
+import com.glyceryl6.staff.registry.KODamageTypes;
 import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
@@ -65,7 +66,7 @@ public class MusicalNote extends AbstractInvisibleProjectile {
         SoundEvent soundEvent = NoteBlockInstrument.values()[this.getNote()].getSoundEvent().value();
         this.playSound(soundEvent, 3.0F, NoteBlock.getPitchFromNote(this.getNote()));
         if (!this.level().isClientSide && result.getEntity() instanceof LivingEntity livingEntity) {
-            livingEntity.hurt(this.damageSources().thrown((this), this.getOwner()), 3.0F);
+            livingEntity.hurt(this.damageSources().source(KODamageTypes.NOISE, (this), this.getOwner()), 3.0F);
             livingEntity.invulnerableTime = 0;
         }
     }

@@ -66,6 +66,7 @@ public class IceBomb extends AbstractInvisibleProjectile {
             int x = Mth.ceil(dimensions.width() / 2.0F);
             int y = Mth.ceil(dimensions.height() / 2.0F + 1.0F);
             BlockPos pos = entity.blockPosition();
+            entity.setTicksFrozen(entity.getTicksRequiredToFreeze());
             BlockPos.withinManhattan(pos, x, y, x).forEach(tempPos -> {
                 if (!level.getBlockState(tempPos).isSolid()) {
                     level.setBlockAndUpdate(tempPos, this.blockState);

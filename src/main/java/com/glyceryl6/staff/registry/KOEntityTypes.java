@@ -25,9 +25,9 @@ public class KOEntityTypes {
     public static final DeferredHolder<EntityType<?>, EntityType<BoneMeal>> BONE_MEAL = ENTITY_TYPES.register("bone_meal",
             () -> EntityType.Builder.<BoneMeal>of(BoneMeal::new, MobCategory.MISC).sized(0.1F, 0.1F)
                     .clientTrackingRange((4)).updateInterval((10)).build("bone_meal"));
-    public static final DeferredHolder<EntityType<?>, EntityType<ThrownItem>> THROWN_ITEM = ENTITY_TYPES.register("thrown_item",
-            () -> EntityType.Builder.<ThrownItem>of(ThrownItem::new, MobCategory.MISC).sized(0.25F, 0.25F)
-                    .clientTrackingRange((4)).updateInterval((10)).fireImmune().build("thrown_item"));
+    public static final DeferredHolder<EntityType<?>, EntityType<ThrownBookAndPaper>> THROWN_BOOK_AND_PAPER = ENTITY_TYPES.register("thrown_book_and_paper",
+            () -> EntityType.Builder.<ThrownBookAndPaper>of(ThrownBookAndPaper::new, MobCategory.MISC).sized(0.25F, 0.25F)
+                    .clientTrackingRange((4)).updateInterval((10)).fireImmune().build("thrown_book_and_paper"));
     public static final DeferredHolder<EntityType<?>, EntityType<Enchant>> ENCHANT = ENTITY_TYPES.register("enchant",
             () -> EntityType.Builder.<Enchant>of(Enchant::new, MobCategory.MISC).sized(0.25F, 0.25F)
                     .clientTrackingRange((4)).updateInterval((10)).build("enchant"));

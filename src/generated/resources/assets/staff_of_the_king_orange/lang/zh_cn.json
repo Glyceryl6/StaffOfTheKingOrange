@@ -1,5 +1,13 @@
 {
   "block.staff_of_the_king_orange.signal_block": "信号方块",
+  "death.attack.anvilThump": "%1$s受到了一记铁砧的重击",
+  "death.attack.anvilThump.player": "%1$s受到了来自%2$s一记铁砧的重击",
+  "death.attack.knowledge": "%1$s感受到了知识的力量",
+  "death.attack.knowledge.player": "%2$s让%1$s感受到了知识的力量",
+  "death.attack.noise": "%1$s被噪音给吵死了",
+  "death.attack.noise.player": "%1$s被%2$s使用噪音给吵死了",
+  "death.attack.redstoneBeam": "%1$s被红石射线杀死了",
+  "death.attack.redstoneBeam.player": "%1$s被%2$s用红石射线杀死了",
   "entity.staff_of_the_king_orange.beeper": "苦力蜂",
   "entity.staff_of_the_king_orange.bone_meal": "骨粉",
   "entity.staff_of_the_king_orange.ice_bomb": "冰弹",

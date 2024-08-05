@@ -1,6 +1,5 @@
 package com.glyceryl6.staff.common.entities.projectile.visible;
 
-import com.glyceryl6.staff.registry.KOEntityTypes;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -13,16 +12,16 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class ThrownItem extends Fireball {
+public class AbstractThrownItem extends Fireball {
 
     public float damageAmount;
     
-    public ThrownItem(EntityType<? extends ThrownItem> type, Level level) {
+    public AbstractThrownItem(EntityType<? extends AbstractThrownItem> type, Level level) {
         super(type, level);
     }
 
-    public ThrownItem(LivingEntity shooter, Vec3 movement, Level level) {
-        super(KOEntityTypes.THROWN_ITEM.get(), shooter, movement, level);
+    public AbstractThrownItem(EntityType<? extends AbstractThrownItem> type, LivingEntity shooter, Vec3 movement, Level level) {
+        super(type, shooter, movement, level);
     }
 
     @Override

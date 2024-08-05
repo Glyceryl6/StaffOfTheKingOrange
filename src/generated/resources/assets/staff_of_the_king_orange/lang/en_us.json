@@ -1,5 +1,13 @@
 {
   "block.staff_of_the_king_orange.signal_block": "Signal Block",
+  "death.attack.anvilThump": "%1$s received a thump from the anvil",
+  "death.attack.anvilThump.player": "%1$s received a thump from %2$s's anvil",
+  "death.attack.knowledge": "%1$s feeling the power of knowledge",
+  "death.attack.knowledge.player": "%2$s made 1$s feeling the power of knowledge",
+  "death.attack.noise": "%1$s was killed by the noise",
+  "death.attack.noise.player": "%1$s was killed by %2$s using noise",
+  "death.attack.redstoneBeam": "%1$s was killed by the redstone beam",
+  "death.attack.redstoneBeam.player": "%1$s was killed by %2$s using redstone beam",
   "entity.staff_of_the_king_orange.beeper": "Beeper",
   "entity.staff_of_the_king_orange.bone_meal": "Bone Meal",
   "entity.staff_of_the_king_orange.ice_bomb": "Ice Bomb",
@@ -19,5 +27,5 @@
   "tooltip.staff.continuous_mode": "§bContinuous Mode: ",
   "tooltip.staff.continuous_mode.false": "§dOFF",
   "tooltip.staff.continuous_mode.true": "§dON",
-  "tooltip.staff.core_block": "§aCore Block: §6§r%s"
+  "tooltip.staff.core_block": "§aCore Block: §r§6%s"
 }

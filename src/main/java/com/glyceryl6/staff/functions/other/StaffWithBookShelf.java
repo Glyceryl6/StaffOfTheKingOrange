@@ -1,7 +1,7 @@
 package com.glyceryl6.staff.functions.other;
 
-import com.glyceryl6.staff.common.entities.projectile.visible.ThrownItem;
 import com.glyceryl6.staff.api.INormalStaffFunction;
+import com.glyceryl6.staff.common.entities.projectile.visible.ThrownBookAndPaper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,12 +18,12 @@ public class StaffWithBookShelf implements INormalStaffFunction {
     @Override
     public void useTick(Level level, Player player, ItemStack stack) {
         if (!level.isClientSide) {
-            ThrownItem thrownItem = new ThrownItem(player, Vec3.ZERO, level);
-            thrownItem.setPos(player.getRandomX(0.5D), player.getY(0.5D), player.getRandomZ(0.5D));
-            thrownItem.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
-            thrownItem.setItem(ITEMS[level.random.nextInt(ITEMS.length)].getDefaultInstance());
-            thrownItem.damageAmount = 1.5F;
-            level.addFreshEntity(thrownItem);
+            ThrownBookAndPaper bookAndPaper = new ThrownBookAndPaper(player, Vec3.ZERO, level);
+            bookAndPaper.setPos(player.getRandomX(0.5D), player.getY(0.5D), player.getRandomZ(0.5D));
+            bookAndPaper.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
+            bookAndPaper.setItem(ITEMS[level.random.nextInt(ITEMS.length)].getDefaultInstance());
+            bookAndPaper.damageAmount = 1.5F;
+            level.addFreshEntity(bookAndPaper);
         }
     }
 
