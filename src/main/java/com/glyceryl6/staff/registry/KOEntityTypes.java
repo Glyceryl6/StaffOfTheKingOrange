@@ -62,7 +62,7 @@ public class KOEntityTypes {
             () -> EntityType.Builder.<PlacedStaff>of(PlacedStaff::new, MobCategory.MISC).sized(0.8F, 3.4F)
                     .clientTrackingRange((10)).updateInterval((10)).build("placed_staff"));
     public static final DeferredHolder<EntityType<?>, EntityType<Stalagmite>> STALAGMITE = ENTITY_TYPES.register("stalagmite",
-            () -> EntityType.Builder.<Stalagmite>of(Stalagmite::new, MobCategory.MISC).sized(1.0F, 4.0F)
+            () -> EntityType.Builder.of(Stalagmite::new, MobCategory.MISC).sized(1.0F, 4.0F)
                     .clientTrackingRange((10)).updateInterval((10)).noSave().noSummon().build("stalagmite"));
 
 }
