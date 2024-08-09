@@ -89,7 +89,7 @@ public class StaffSpecialUtils {
             entity.playSound(SoundEvents.ENCHANTMENT_TABLE_USE, 2.0F, pitch);
             if (entity instanceof IHasEnchantmentGlintEntity glintEntity) {
                 if (!level.isClientSide) {
-                    glintEntity.setGlint(!glintEntity.isGlint());
+                    glintEntity.KO$setGlint(!glintEntity.KO$isGlint());
                 }
             }
         }

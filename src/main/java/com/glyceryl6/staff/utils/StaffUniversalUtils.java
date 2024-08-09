@@ -4,7 +4,6 @@ import com.glyceryl6.staff.api.IAbstractStaffFunction;
 import com.glyceryl6.staff.api.INormalStaffFunction;
 import com.glyceryl6.staff.api.IPlayerHeadStaffFunction;
 import com.glyceryl6.staff.common.items.StaffItem;
-import com.glyceryl6.staff.component.Staffs;
 import com.glyceryl6.staff.registry.KODataComponents;
 import com.glyceryl6.staff.registry.KONormalStaffs;
 import com.glyceryl6.staff.registry.KOPlayerHeadStaffs;
@@ -12,7 +11,6 @@ import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.arguments.item.ItemParser;
 import net.minecraft.core.Holder;
-import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -37,23 +35,6 @@ import java.util.List;
 import java.util.Map;
 
 public class StaffUniversalUtils {
-
-    public static void setDefaultComponent(ItemStack stack) {
-        DataComponentType<CustomData> command = KODataComponents.STAFF_COMMAND.get();
-        DataComponentType<Staffs> staffs = KODataComponents.STAFFS.get();
-        stack.set(DataComponents.ATTRIBUTE_MODIFIERS, getStaffFunction(stack).addAttributes(stack));
-        if (stack.get(KODataComponents.STAFF_CORE_STATE.get()) == null) {
-            setNormalBlockForStaff(stack, Blocks.COMMAND_BLOCK.defaultBlockState());
-        }
-
-        if (stack.get(command) == null) {
-            stack.set(command, CustomData.EMPTY);
-        }
-
-        if (stack.get(staffs) == null) {
-            stack.set(staffs, new Staffs(Boolean.TRUE, Boolean.TRUE, 0));
-        }
-    }
 
     public static void setNormalBlockForStaff(ItemStack stack, BlockState state) {
         CompoundTag coreBlock = CustomData.EMPTY.copyTag();

@@ -30,7 +30,7 @@ public class StaffWithCobweb implements INormalStaffFunction {
         boolean flag = this.isEffective(context.getItemInHand());
         if (!context.getLevel().isClientSide && flag) {
             if (context.getPlayer() instanceof IHasCobwebHookEntity entity) {
-                return entity.getCobwebHook() == null;
+                return entity.KO$getCobwebHook() == null;
             }
         }
 
@@ -40,11 +40,11 @@ public class StaffWithCobweb implements INormalStaffFunction {
     @Override
     public void use(Level level, Player player, ItemStack stack) {
         if (player instanceof IHasCobwebHookEntity entity && this.isEffective(stack)) {
-            CobwebHook cobwebHook = entity.getCobwebHook();
+            CobwebHook cobwebHook = entity.KO$getCobwebHook();
             if (cobwebHook != null) {
                 if (!level.isClientSide) {
                     cobwebHook.discard();
-                    entity.setCobwebHook(null);
+                    entity.KO$setCobwebHook(null);
                 }
 
                 this.playSound(level, player, SoundEvents.FISHING_BOBBER_RETRIEVE);
@@ -78,11 +78,11 @@ public class StaffWithCobweb implements INormalStaffFunction {
         Level level = context.getLevel();
         boolean flag = this.isEffective(context.getItemInHand());
         if (player instanceof IHasCobwebHookEntity entity && flag) {
-            CobwebHook cobwebHook = entity.getCobwebHook();
+            CobwebHook cobwebHook = entity.KO$getCobwebHook();
             if (cobwebHook != null) {
                 if (!level.isClientSide) {
                     cobwebHook.discard();
-                    entity.setCobwebHook(null);
+                    entity.KO$setCobwebHook(null);
                 }
 
                 this.playSound(level, player, SoundEvents.FISHING_BOBBER_RETRIEVE);

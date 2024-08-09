@@ -158,7 +158,7 @@ public class CobwebHook extends Projectile {
 
     private void setHookForPlayer(@Nullable CobwebHook cobwebHook) {
         if (this.getPlayer() instanceof IHasCobwebHookEntity entity) {
-            entity.setCobwebHook(cobwebHook);
+            entity.KO$setCobwebHook(cobwebHook);
         }
     }
 
