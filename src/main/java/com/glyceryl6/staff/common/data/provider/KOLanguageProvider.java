@@ -51,8 +51,10 @@ public class KOLanguageProvider extends LanguageProvider {
         this.add(KOKeyMappings.ADD_REMOVE_KEYBINDING.getName(), "Add/Remove block", "添加/移除方块");
         this.add(KOKeyMappings.RANDOM_CHANGE_KEYBINDING.getName(), "Random change block", "随机切换方块");
         this.add(KOKeyMappings.CONTINUOUS_MODE_KEYBINDING.getName(), "Switch Continuous Mode", "切换连续模式");
+        this.add(KOKeyMappings.SHOW_SURROUNDING_BLOCK.getName(), "Show Surrounding Block", "显示周围环绕的方块");
         this.addMessages("normal_block_change", "The core block is change to: %s", "核心方块已更改为：%s");
         this.addMessages("player_head_change", "The core block is change to: %s's head", "核心方块已更改为：%s的头");
+        this.addMessages("show_surrounding_block", "Show surrounding block: %s", "显示周围环绕的方块：%s");
         this.addDeathMessages("redstoneBeam", "%1$s was killed by the redstone beam", "%1$s被红石射线杀死了");
         this.addDeathMessages("redstoneBeam.player", "%1$s was killed by %2$s using redstone beam", "%1$s被%2$s用红石射线杀死了");
         this.addDeathMessages("knowledge", "%1$s feeling the power of knowledge", "%1$s感受到了知识的力量");
@@ -64,7 +66,8 @@ public class KOLanguageProvider extends LanguageProvider {
         this.addTooltips("continuous_mode", "§bContinuous Mode: ", "§b连续模式：");
         this.addTooltips("continuous_mode.true", "§dON", "§d开");
         this.addTooltips("continuous_mode.false", "§dOFF", "§d关");
-        this.addTooltips("core_block", "§aCore Block: §r§6%s", "§a核心方块：§6§r%s");
+        this.addTooltips("core_block", "§aCore Block: ", "§a核心方块：");
+        this.addTooltips("binding_command_prefix", "§cBinding Command: ", "§c绑定的命令：");
     }
 
     @Override

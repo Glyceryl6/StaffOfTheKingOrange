@@ -22,10 +22,13 @@
   "key.staff.add_remove_block": "Add/Remove block",
   "key.staff.continuous_mode": "Switch Continuous Mode",
   "key.staff.random_change_block": "Random change block",
+  "key.staff.show_surrounding_block": "Show Surrounding Block",
   "message.staff.normal_block_change": "The core block is change to: %s",
   "message.staff.player_head_change": "The core block is change to: %s's head",
+  "message.staff.show_surrounding_block": "Show surrounding block: %s",
+  "tooltip.staff.binding_command_prefix": "§cBinding Command: ",
   "tooltip.staff.continuous_mode": "§bContinuous Mode: ",
   "tooltip.staff.continuous_mode.false": "§dOFF",
   "tooltip.staff.continuous_mode.true": "§dON",
-  "tooltip.staff.core_block": "§aCore Block: §r§6%s"
+  "tooltip.staff.core_block": "§aCore Block: "
 }

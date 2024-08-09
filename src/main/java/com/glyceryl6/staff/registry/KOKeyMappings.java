@@ -14,5 +14,7 @@ public class KOKeyMappings {
             "key.staff.random_change_block", InputConstants.KEY_B, CATEGORY_STAFF);
     public static final KeyMapping CONTINUOUS_MODE_KEYBINDING = new KeyMapping(
             "key.staff.continuous_mode", InputConstants.KEY_C, CATEGORY_STAFF);
+    public static final KeyMapping SHOW_SURROUNDING_BLOCK = new KeyMapping(
+            "key.staff.show_surrounding_block", InputConstants.KEY_V, CATEGORY_STAFF);
 
 }

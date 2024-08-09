@@ -7,6 +7,7 @@ import com.glyceryl6.staff.registry.KOMobEffects;
 import com.glyceryl6.staff.server.commands.ModCommandCenter;
 import com.glyceryl6.staff.server.network.RandomChangeStaffBlockC2SPacket;
 import com.glyceryl6.staff.server.network.SetStaffBlockC2SPacket;
+import com.glyceryl6.staff.server.network.ShowStaffSurroundingBlockC2SPacket;
 import com.glyceryl6.staff.server.network.StaffContinuousModeC2SPacket;
 import com.glyceryl6.staff.utils.StaffUniversalUtils;
 import net.minecraft.client.Minecraft;
@@ -130,6 +131,10 @@ public class GameHandler {
 
             if (KOKeyMappings.CONTINUOUS_MODE_KEYBINDING.consumeClick()) {
                 PacketDistributor.sendToServer(new StaffContinuousModeC2SPacket(0));
+            }
+
+            if (KOKeyMappings.SHOW_SURROUNDING_BLOCK.consumeClick()) {
+                PacketDistributor.sendToServer(new ShowStaffSurroundingBlockC2SPacket(0));
             }
         }
     }

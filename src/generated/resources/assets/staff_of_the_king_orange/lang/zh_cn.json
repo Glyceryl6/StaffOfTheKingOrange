@@ -22,10 +22,13 @@
   "key.staff.add_remove_block": "添加/移除方块",
   "key.staff.continuous_mode": "切换连续模式",
   "key.staff.random_change_block": "随机切换方块",
+  "key.staff.show_surrounding_block": "显示周围环绕的方块",
   "message.staff.normal_block_change": "核心方块已更改为：%s",
   "message.staff.player_head_change": "核心方块已更改为：%s的头",
+  "message.staff.show_surrounding_block": "显示周围环绕的方块：%s",
+  "tooltip.staff.binding_command_prefix": "§c绑定的命令：",
   "tooltip.staff.continuous_mode": "§b连续模式：",
   "tooltip.staff.continuous_mode.false": "§d关",
   "tooltip.staff.continuous_mode.true": "§d开",
-  "tooltip.staff.core_block": "§a核心方块：§6§r%s"
+  "tooltip.staff.core_block": "§a核心方块："
 }
