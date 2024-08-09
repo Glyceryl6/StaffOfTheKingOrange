@@ -21,7 +21,7 @@ public abstract class MixinPlayer extends LivingEntity implements IHasCobwebHook
 
     @Inject(method = "aiStep", at = @At(value = "TAIL"))
     public void aiStep(CallbackInfo ci) {
-        CobwebHook cobwebHook = this.getCobwebHook();
+        CobwebHook cobwebHook = this.KO$getCobwebHook();
         if (cobwebHook != null && cobwebHook.isInBlock()) {
             this.resetFallDistance();
             if (this.isControlledByLocalInstance()) {

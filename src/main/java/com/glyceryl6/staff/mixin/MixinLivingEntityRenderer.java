@@ -33,7 +33,7 @@ public abstract class MixinLivingEntityRenderer<T extends LivingEntity, M extend
         Minecraft minecraft = Minecraft.getInstance();
         LocalPlayer player = minecraft.player;
         if (entity instanceof IHasEnchantmentGlintEntity glintEntity
-                && glintEntity.isGlint() && player != null) {
+                && glintEntity.KO$isGlint() && player != null) {
             boolean flag = this.isBodyVisible(entity);
             boolean flag1 = !flag && !entity.isInvisibleTo(player);
             boolean flag2 = minecraft.shouldEntityAppearGlowing(entity);

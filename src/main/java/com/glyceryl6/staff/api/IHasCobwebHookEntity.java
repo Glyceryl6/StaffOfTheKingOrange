@@ -4,8 +4,8 @@ import com.glyceryl6.staff.common.entities.CobwebHook;
 
 public interface IHasCobwebHookEntity {
 
-    CobwebHook getCobwebHook();
+    CobwebHook KO$getCobwebHook();
 
-    void setCobwebHook(CobwebHook cobwebHook);
+    void KO$setCobwebHook(CobwebHook cobwebHook);
 
 }

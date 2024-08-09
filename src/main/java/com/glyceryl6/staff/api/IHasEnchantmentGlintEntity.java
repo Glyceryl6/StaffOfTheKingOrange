@@ -2,8 +2,8 @@ package com.glyceryl6.staff.api;
 
 public interface IHasEnchantmentGlintEntity {
 
-    boolean isGlint();
+    boolean KO$isGlint();
 
-    void setGlint(boolean glint);
+    void KO$setGlint(boolean glint);
 
 }
