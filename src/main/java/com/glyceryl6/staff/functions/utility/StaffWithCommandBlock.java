@@ -27,7 +27,7 @@ public class StaffWithCommandBlock implements INormalStaffFunction {
 
     @Override
     public void use(Level level, Player player, ItemStack stack) {
-        CustomData customData = stack.get(KODataComponents.STAFF_COMMAND.get());
+        CustomData customData = stack.get(KODataComponents.STAFF_BINDING_COMMAND.get());
         if (customData != null && player instanceof LocalPlayer localPlayer) {
             String command = customData.copyTag().getString("Command");
             if (player.isShiftKeyDown()) {
@@ -50,7 +50,7 @@ public class StaffWithCommandBlock implements INormalStaffFunction {
 
     @Override
     public void useTick(Level level, Player player, ItemStack stack) {
-        CustomData customData = stack.get(KODataComponents.STAFF_COMMAND.get());
+        CustomData customData = stack.get(KODataComponents.STAFF_BINDING_COMMAND.get());
         if (customData != null && player instanceof ServerPlayer serverPlayer) {
             String command = customData.copyTag().getString("Command");
             String message = this.normalizeChatMessage(command);
@@ -60,7 +60,7 @@ public class StaffWithCommandBlock implements INormalStaffFunction {
             String textName = player.getName().getString();
             Component displayName = player.getDisplayName();
             MinecraftServer server = level.getServer();
-            if (serverLevel != null && displayName != null && server != null) {
+            if (serverLevel != null && displayName != null) {
                 CommandSourceStack sourceStack = new CommandSourceStack(
                         player, player.position(), rotationVector, serverLevel,
                         permissionLevel, textName, displayName, server, player);
@@ -71,7 +71,7 @@ public class StaffWithCommandBlock implements INormalStaffFunction {
 
     @Override
     public void useOnBlock(UseOnContext context) {
-        this.useTick(context.getLevel(), context.getPlayer(), context.getItemInHand());
+        this.use(context.getLevel(), context.getPlayer(), context.getItemInHand());
     }
 
 }

@@ -73,6 +73,10 @@ public class Stalagmite extends Entity {
                 this.setPos(this.position().add(0.0D, 0.5D, 0.0D));
             }
 
+            if (this.lifeTicks < 10) {
+                this.setPos(this.position().add(0.0D, -0.5D, 0.0D));
+            }
+
             AABB aabb = this.getBoundingBox().inflate(0.4F, 1.0F, 0.4F);
             for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, aabb)) {
                 this.dealDamageTo(entity);

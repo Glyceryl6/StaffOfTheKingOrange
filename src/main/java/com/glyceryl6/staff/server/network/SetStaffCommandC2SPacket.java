@@ -35,7 +35,7 @@ public record SetStaffCommandC2SPacket(String command) implements CustomPacketPa
             ItemStack mainHandItem = player.getMainHandItem();
             if (mainHandItem.getItem() instanceof StaffItem) {
                 BlockState state = StaffUniversalUtils.getCoreBlockState(mainHandItem);
-                DataComponentType<CustomData> type = KODataComponents.STAFF_COMMAND.get();
+                DataComponentType<CustomData> type = KODataComponents.STAFF_BINDING_COMMAND.get();
                 if (state.getBlock() instanceof CommandBlock) {
                     CompoundTag newCommand = CustomData.EMPTY.copyTag();
                     newCommand.putString("Command", packet.command);

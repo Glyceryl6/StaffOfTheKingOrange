@@ -11,6 +11,11 @@ import net.minecraft.world.phys.Vec3;
 public class StaffWithRedstoneBlock implements INormalStaffFunction {
 
     @Override
+    public boolean enableUseOnBlock() {
+        return false;
+    }
+
+    @Override
     public void useTick(Level level, Player player, ItemStack stack) {
         if (!level.isClientSide) {
             Signal signal = new Signal(player, Vec3.ZERO, level);
