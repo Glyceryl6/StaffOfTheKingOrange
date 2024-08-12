@@ -85,6 +85,7 @@ public class ModHandler {
         });
     }
 
+    @OnlyIn(Dist.CLIENT)
     private static <T extends LivingEntity, M extends EntityModel<T>> void registerRenderLayers(LivingEntityRenderer<T, M> renderer) {
         renderer.addLayer(new SurroundingBlockLayer<>(renderer));
     }
