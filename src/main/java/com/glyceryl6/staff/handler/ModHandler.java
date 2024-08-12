@@ -114,16 +114,16 @@ public class ModHandler {
         PayloadRegistrar registrar = event.registrar("1");
         registrar.playToServer(RandomChangeStaffBlockC2SPacket.TYPE,
                 RandomChangeStaffBlockC2SPacket.STREAM_CODEC,
-                RandomChangeStaffBlockC2SPacket::serverSideHandle);
+                RandomChangeStaffBlockC2SPacket::handle);
         registrar.playToServer(SetStaffBlockC2SPacket.TYPE,
                 SetStaffBlockC2SPacket.STREAM_CODEC,
-                SetStaffBlockC2SPacket::serverSideHandle);
+                SetStaffBlockC2SPacket::handle);
         registrar.playToServer(SetStaffCommandC2SPacket.TYPE,
                 SetStaffCommandC2SPacket.STREAM_CODEC,
-                SetStaffCommandC2SPacket::serverSideHandle);
-        registrar.playToServer(ShowStaffSurroundingBlockC2SPacket.TYPE,
-                ShowStaffSurroundingBlockC2SPacket.STREAM_CODEC,
-                ShowStaffSurroundingBlockC2SPacket::serverSideHandle);
+                SetStaffCommandC2SPacket::handle);
+        registrar.playToServer(ShowStaffSurroundingBlockS2CPacket.TYPE,
+                ShowStaffSurroundingBlockS2CPacket.STREAM_CODEC,
+                ShowStaffSurroundingBlockS2CPacket::handle);
         registrar.playToServer(StaffContinuousModeC2SPacket.TYPE,
                 StaffContinuousModeC2SPacket.STREAM_CODEC,
                 StaffContinuousModeC2SPacket::serverSideHandle);

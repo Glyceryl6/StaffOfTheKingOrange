@@ -30,7 +30,7 @@ public record RandomChangeStaffBlockC2SPacket(int key) implements CustomPacketPa
         return TYPE;
     }
 
-    public static void serverSideHandle(RandomChangeStaffBlockC2SPacket packet, IPayloadContext context) {
+    public static void handle(RandomChangeStaffBlockC2SPacket packet, IPayloadContext context) {
         Player player = context.player();
         if (blocks.isEmpty()) {
             blocks = allBlocks();

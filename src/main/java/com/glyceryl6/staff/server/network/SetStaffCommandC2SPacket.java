@@ -30,7 +30,7 @@ public record SetStaffCommandC2SPacket(String command) implements CustomPacketPa
         return TYPE;
     }
 
-    public static void serverSideHandle(SetStaffCommandC2SPacket packet, IPayloadContext context) {
+    public static void handle(SetStaffCommandC2SPacket packet, IPayloadContext context) {
         if (context.player() instanceof ServerPlayer player) {
             ItemStack mainHandItem = player.getMainHandItem();
             if (mainHandItem.getItem() instanceof StaffItem) {

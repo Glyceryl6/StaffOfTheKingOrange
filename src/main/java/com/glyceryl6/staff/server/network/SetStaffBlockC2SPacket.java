@@ -36,7 +36,7 @@ public record SetStaffBlockC2SPacket(int key) implements CustomPacketPayload {
         return TYPE;
     }
 
-    public static void serverSideHandle(SetStaffBlockC2SPacket packet, IPayloadContext context) {
+    public static void handle(SetStaffBlockC2SPacket packet, IPayloadContext context) {
         Player player = context.player();
         if (player instanceof ServerPlayer serverPlayer) {
             ItemStack mainHandItem = player.getMainHandItem();

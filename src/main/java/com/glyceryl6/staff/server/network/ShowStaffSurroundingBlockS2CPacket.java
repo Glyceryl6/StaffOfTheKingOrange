@@ -19,18 +19,18 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public record ShowStaffSurroundingBlockC2SPacket(int key) implements CustomPacketPayload {
+public record ShowStaffSurroundingBlockS2CPacket(int key) implements CustomPacketPayload {
 
-    public static final Type<ShowStaffSurroundingBlockC2SPacket> TYPE = new Type<>(Main.prefix("show_staff_surrounding_block"));
-    public static final StreamCodec<ByteBuf, ShowStaffSurroundingBlockC2SPacket> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.VAR_INT, ShowStaffSurroundingBlockC2SPacket::key, ShowStaffSurroundingBlockC2SPacket::new);
+    public static final Type<ShowStaffSurroundingBlockS2CPacket> TYPE = new Type<>(Main.prefix("show_staff_surrounding_block"));
+    public static final StreamCodec<ByteBuf, ShowStaffSurroundingBlockS2CPacket> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.VAR_INT, ShowStaffSurroundingBlockS2CPacket::key, ShowStaffSurroundingBlockS2CPacket::new);
 
     @Override
     public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 
-    public static void serverSideHandle(ShowStaffSurroundingBlockC2SPacket packet, IPayloadContext context) {
+    public static void handle(ShowStaffSurroundingBlockS2CPacket packet, IPayloadContext context) {
         if (context.player() instanceof ServerPlayer player) {
             ItemStack itemInHand = player.getItemInHand(player.getUsedItemHand());
             if (itemInHand.getItem() instanceof StaffItem) {
