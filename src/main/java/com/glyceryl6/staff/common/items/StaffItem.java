@@ -7,6 +7,7 @@ import com.glyceryl6.staff.registry.KODataComponents;
 import com.glyceryl6.staff.registry.KOItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
@@ -14,6 +15,8 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
@@ -22,22 +25,23 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.tooltip.BundleTooltip;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.component.BundleContents;
+import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.ResolvableProfile;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.NoteBlock;
-import net.minecraft.world.level.block.PlayerHeadBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -54,7 +58,32 @@ import static com.glyceryl6.staff.utils.StaffUniversalUtils.*;
 public class StaffItem extends Item {
 
     public StaffItem() {
-        super(new Properties().stacksTo(1));
+        super(new Properties().stacksTo(1)
+                .component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)
+                .component(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY)
+                .component(KODataComponents.STAFF_CORE_STATE, getDefaultCoreBlock())
+                .component(KODataComponents.STAFF_BINDING_COMMAND, getDefaultCommand())
+                .component(KODataComponents.STAFF_SURROUNDING_BLOCK, getDefaultShow())
+                .component(KODataComponents.STAFFS, new Staffs(Boolean.TRUE, Boolean.TRUE, 0)));
+    }
+
+    private static CustomData getDefaultCoreBlock() {
+        CompoundTag coreBlock = CustomData.EMPTY.copyTag();
+        BlockState state = Blocks.COMMAND_BLOCK.defaultBlockState();
+        coreBlock.put("core_block", NbtUtils.writeBlockState(state));
+        return CustomData.of(coreBlock);
+    }
+
+    private static CustomData getDefaultCommand() {
+        CompoundTag compound = CustomData.EMPTY.copyTag();
+        compound.putString("Command", "");
+        return CustomData.of(compound);
+    }
+
+    private static CustomData getDefaultShow() {
+        CompoundTag compound = CustomData.EMPTY.copyTag();
+        compound.putBoolean("Show", true);
+        return CustomData.of(compound);
     }
 
     private boolean isContinuousMode(ItemStack stack) {
@@ -183,11 +212,6 @@ public class StaffItem extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        setDefaultComponent(stack);
-    }
-
-    @Override
     public Component getName(ItemStack stack) {
         String key = KOItems.STAFF.get().getDescriptionId();
         BlockState state = getCoreBlockState(stack);
@@ -204,6 +228,13 @@ public class StaffItem extends Item {
     }
 
     @Override
+    public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+        boolean isHideTooltips = !stack.has(DataComponents.HIDE_TOOLTIP) && !stack.has(DataComponents.HIDE_ADDITIONAL_TOOLTIP);
+        Optional<BundleContents> contentsOptional = Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS));
+        return getCoreBlockState(stack).is(Blocks.LAPIS_BLOCK) && isHideTooltips ? contentsOptional.map(BundleTooltip::new) : Optional.empty();
+    }
+
+    @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         Staffs staffs = stack.get(KODataComponents.STAFFS.get());
         Block block = getCoreBlockState(stack).getBlock();
@@ -217,9 +248,19 @@ public class StaffItem extends Item {
             }
         }
 
-        tooltipComponents.add(Component.translatable("tooltip.staff.core_block", literal.getString()));
+        literal = literal.withStyle(ChatFormatting.GOLD);
+        tooltipComponents.add(Component.translatable("tooltip.staff.core_block").append(literal));
         if (staffs != null) {
             staffs.addToTooltip(context, tooltipComponents::add, tooltipFlag);
+        }
+
+        if (block instanceof CommandBlock) {
+            CustomData customData = stack.get(KODataComponents.STAFF_BINDING_COMMAND.get());
+            if (customData != null) {
+                String key = "tooltip.staff.binding_command_prefix";
+                String command = customData.copyTag().getString("Command");
+                tooltipComponents.add(Component.translatable(key).append(command));
+            }
         }
     }
 

@@ -43,6 +43,9 @@ public class KOEntityTypes {
     public static final DeferredHolder<EntityType<?>, EntityType<MusicalNote>> MUSICAL_NOTE = ENTITY_TYPES.register("musical_note",
             () -> EntityType.Builder.<MusicalNote>of(MusicalNote::new, MobCategory.MISC).sized(0.25F, 0.25F)
                     .clientTrackingRange((4)).updateInterval((10)).build("musical_note"));
+    public static final DeferredHolder<EntityType<?>, EntityType<ThrowableBlock>> THROWABLE_BLOCK = ENTITY_TYPES.register("throwable_block",
+            () -> EntityType.Builder.<ThrowableBlock>of(ThrowableBlock::new, MobCategory.MISC).sized(1.0F, 1.0F)
+                    .clientTrackingRange((6)).updateInterval(Integer.MAX_VALUE).build("throwable_block"));
     public static final DeferredHolder<EntityType<?>, EntityType<Beeper>> BEEPER = ENTITY_TYPES.register("beeper",
             () -> EntityType.Builder.of(Beeper::new, MobCategory.CREATURE).sized(0.7F, 0.6F)
                     .eyeHeight(0.3F).clientTrackingRange((8)).build("beeper"));
