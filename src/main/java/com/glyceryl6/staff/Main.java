@@ -17,6 +17,7 @@ public class Main {
         KOCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         KOBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
         KODataComponents.DATA_COMPONENT_TYPE.register(modEventBus);
+        KOAttachmentTypes.ATTACHMENT_TYPES.register(modEventBus);
         KOParticleTypes.PARTICLE_TYPES.register(modEventBus);
         KOEntityTypes.ENTITY_TYPES.register(modEventBus);
         KOMobEffects.MOB_EFFECTS.register(modEventBus);

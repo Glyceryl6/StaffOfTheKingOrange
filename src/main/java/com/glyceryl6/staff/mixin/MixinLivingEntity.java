@@ -1,13 +1,8 @@
 package com.glyceryl6.staff.mixin;
 
 import com.glyceryl6.staff.api.IHasCobwebHookEntity;
-import com.glyceryl6.staff.api.IHasEnchantmentGlintEntity;
 import com.glyceryl6.staff.common.entities.CobwebHook;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -24,30 +19,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
-public abstract class MixinLivingEntity extends Entity implements ILivingEntityExtension, IHasCobwebHookEntity, IHasEnchantmentGlintEntity {
+public abstract class MixinLivingEntity extends Entity implements ILivingEntityExtension, IHasCobwebHookEntity {
 
     @Shadow public abstract ItemStack getItemInHand(InteractionHand hand);
 
-    @Unique private static final EntityDataAccessor<Boolean> IS_GLINT = SynchedEntityData.defineId(MixinLivingEntity.class, EntityDataSerializers.BOOLEAN);
     @Unique private CobwebHook KO$cobwebHook;
 
     public MixinLivingEntity(EntityType<?> type, Level level) {
         super(type, level);
-    }
-
-    @Inject(method = "defineSynchedData", at = @At(value = "TAIL"))
-    protected void defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(IS_GLINT, Boolean.FALSE);
-    }
-
-    @Inject(method = "addAdditionalSaveData", at = @At(value = "TAIL"))
-    public void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
-        compound.putBoolean("IsGlint", this.KO$isGlint());
-    }
-
-    @Inject(method = "readAdditionalSaveData", at = @At(value = "TAIL"))
-    public void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
-        this.KO$setGlint(compound.getBoolean("IsGlint"));
     }
 
     @Inject(method = "travel", at = @At(value = "INVOKE", shift = At.Shift.BEFORE,
@@ -56,16 +35,6 @@ public abstract class MixinLivingEntity extends Entity implements ILivingEntityE
         if (this.KO$cobwebHook != null && this.KO$cobwebHook.isInBlock() && !this.onGround()) {
             this.setDeltaMovement(vec35.x * 0.99D, d2 * 0.995D, vec35.z * 0.99D);
         }
-    }
-
-    @Override
-    public boolean KO$isGlint() {
-        return this.entityData.get(IS_GLINT);
-    }
-
-    @Override
-    public void KO$setGlint(boolean glint) {
-        this.entityData.set(IS_GLINT, glint);
     }
 
     @Override

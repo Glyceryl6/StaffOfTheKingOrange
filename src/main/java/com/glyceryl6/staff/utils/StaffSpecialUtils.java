@@ -1,6 +1,6 @@
 package com.glyceryl6.staff.utils;
 
-import com.glyceryl6.staff.api.IHasEnchantmentGlintEntity;
+import com.glyceryl6.staff.server.network.SetEntityGlintS2CPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
@@ -19,6 +19,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -84,14 +85,10 @@ public class StaffSpecialUtils {
     }
 
     public static void setEntityGlint(Level level, Entity target) {
-        if (target instanceof LivingEntity entity) {
+        if (!level.isClientSide && target instanceof LivingEntity entity) {
             float pitch = RandomSource.create().nextFloat() * 0.1F + 0.9F;
             entity.playSound(SoundEvents.ENCHANTMENT_TABLE_USE, 2.0F, pitch);
-            if (entity instanceof IHasEnchantmentGlintEntity glintEntity) {
-                if (!level.isClientSide) {
-                    glintEntity.KO$setGlint(!glintEntity.KO$isGlint());
-                }
-            }
+            PacketDistributor.sendToPlayersTrackingEntityAndSelf(entity, new SetEntityGlintS2CPacket(entity.getId()));
         }
     }
 

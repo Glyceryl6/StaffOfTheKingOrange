@@ -118,6 +118,9 @@ public class ModHandler {
         registrar.playToServer(SetStaffBlockC2SPacket.TYPE,
                 SetStaffBlockC2SPacket.STREAM_CODEC,
                 SetStaffBlockC2SPacket::handle);
+        registrar.playToClient(SetEntityGlintS2CPacket.TYPE,
+                SetEntityGlintS2CPacket.STREAM_CODEC,
+                SetEntityGlintS2CPacket::handle);
         registrar.playToServer(SetStaffCommandC2SPacket.TYPE,
                 SetStaffCommandC2SPacket.STREAM_CODEC,
                 SetStaffCommandC2SPacket::handle);
