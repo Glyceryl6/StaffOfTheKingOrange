@@ -1,6 +1,5 @@
 package com.glyceryl6.staff;
 
-import com.glyceryl6.kamikaze.registry.KEEnchantments;
 import com.glyceryl6.staff.registry.*;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
@@ -28,7 +27,8 @@ public class Main {
         KOBlocks.BLOCKS.register(modEventBus);
         KOItems.ITEMS.register(modEventBus);
         if (ModList.get().isLoaded("kamikaze_elytra")) {
-            LOGGER.info("Mod '" + com.glyceryl6.kamikaze.Main.MOD_ID + "' has been successfully loaded!");
+            String modId = com.glyceryl6.kamikaze.Main.MOD_ID;
+            LOGGER.info("Mod '{}' has been successfully loaded!", modId);
         }
     }
 
