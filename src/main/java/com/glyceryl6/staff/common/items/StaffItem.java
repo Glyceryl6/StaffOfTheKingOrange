@@ -215,7 +215,8 @@ public class StaffItem extends Item {
         Block block = state.getBlock();
         String s1 = block.getName().getString();
         String s2 = block.asItem().getDescriptionId();
-        String name = block.asItem() == Items.AIR ? s1 : Component.translatable(s2).getString();
+        String name = block.asItem() == Items.AIR ? s1 :
+                Component.translatable(s2).getString();
         ResolvableProfile profile = stack.get(DataComponents.PROFILE);
         if (block instanceof PlayerHeadBlock && profile != null) {
             name = profile.name().orElse(name);
