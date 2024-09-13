@@ -30,10 +30,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.tooltip.BundleTooltip;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
@@ -215,9 +212,12 @@ public class StaffItem extends Item {
     public Component getName(ItemStack stack) {
         String key = KOItems.STAFF.get().getDescriptionId();
         BlockState state = getCoreBlockState(stack);
-        String name = state.getBlock().getName().getString();
+        Block block = state.getBlock();
+        String s1 = block.getName().getString();
+        String s2 = block.asItem().getDescriptionId();
+        String name = block.asItem() == Items.AIR ? s1 : Component.translatable(s2).getString();
         ResolvableProfile profile = stack.get(DataComponents.PROFILE);
-        if (state.getBlock() instanceof PlayerHeadBlock && profile != null) {
+        if (block instanceof PlayerHeadBlock && profile != null) {
             name = profile.name().orElse(name);
             if (name.startsWith("MHF_")) {
                 name = name.replaceFirst("MHF_", (""));
@@ -239,7 +239,9 @@ public class StaffItem extends Item {
         Staffs staffs = stack.get(KODataComponents.STAFFS.get());
         Block block = getCoreBlockState(stack).getBlock();
         ResolvableProfile profile = stack.get(DataComponents.PROFILE);
-        MutableComponent literal = Component.literal(block.getName().getString());
+        MutableComponent component1 = Component.literal(block.getName().getString());
+        MutableComponent component2 = Component.translatable(block.asItem().getDescriptionId());
+        MutableComponent literal = block.asItem() == Items.AIR ? component1 : component2;
         if (block instanceof PlayerHeadBlock && profile != null) {
             String key = block.asItem().getDescriptionId() + ".named";
             Optional<String> optional = profile.name();
