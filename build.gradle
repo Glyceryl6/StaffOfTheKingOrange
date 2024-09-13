@@ -10,6 +10,7 @@ version = mod_version
 group = mod_group_id
 
 repositories {
+    flatDir(dirs: "libs")
     mavenLocal()
 }
 
@@ -79,6 +80,8 @@ configurations {
 dependencies {
 
     implementation "net.neoforged:neoforge:${neo_version}"
+
+    implementation jarJar(group: 'com.glyceryl6.kamikaze', name: 'kamikaze_elytra', version: '1.0.0-1.21.x')
 
 }
 
