@@ -1,5 +1,6 @@
 package com.glyceryl6.staff;
 
+import com.glyceryl6.kamikaze.registry.KEEnchantments;
 import com.glyceryl6.staff.registry.*;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
@@ -28,7 +29,9 @@ public class Main {
         KOItems.ITEMS.register(modEventBus);
         if (ModList.get().isLoaded("kamikaze_elytra")) {
             String modId = com.glyceryl6.kamikaze.Main.MOD_ID;
+            String reg = KEEnchantments.KAMIKAZE_ELYTRA.registry().toString();
             LOGGER.info("Mod '{}' has been successfully loaded!", modId);
+            LOGGER.info("The mod add a new enchantment named '{}'", reg);
         }
     }
 
