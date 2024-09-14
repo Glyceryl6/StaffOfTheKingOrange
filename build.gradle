@@ -7,9 +7,10 @@ plugins {
 }
 
 version = mod_version
-group = mod_group_id
+group = 'com.glyceryl6.staff'
 
 repositories {
+    flatDir(dirs: "libs")
     mavenLocal()
 }
 
@@ -67,14 +68,6 @@ configurations {
     runtimeClasspath.extendsFrom localRuntime
 }
 
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-
-    mavenLocal()
-}
-
 tasks.jarJar.configure {
     archiveClassifier.set('')
 }
@@ -89,6 +82,21 @@ dependencies {
 
     implementation jarJar(group: 'com.glyceryl6.kamikaze', name: 'kamikaze_elytra', version: '1.0.0-1.21.x')
 
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "${mod_id}",
+                "Specification-Vendor"    : mod_authors,
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : mod_authors,
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                'MixinConfigs'            : "ko.mixins.json"
+        ])
+    }
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -108,7 +116,7 @@ tasks.withType(ProcessResources).configureEach {
     inputs.properties replaceProperties
 
     filesMatching(['META-INF/neoforge.mods.toml']) {
-        expand replaceProperties
+        expand replaceProperties + [project: project]
     }
 }
 
