@@ -5,11 +5,13 @@
     "refmap": "ko.refmap.json",
     "compatibilityLevel": "JAVA_17",
     "mixins": [
+        "MixinEnchantment",
         "MixinLivingEntity",
         "MixinPlayer"
     ],
     "client": [
-        "MixinLivingEntityRenderer"
+        "MixinLivingEntityRenderer",
+        "MixinLevelRenderer"
     ],
     "injectors": {
         "defaultRequire": 1

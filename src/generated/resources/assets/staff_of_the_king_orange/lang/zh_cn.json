@@ -30,5 +30,8 @@
   "tooltip.staff.continuous_mode": "§b连续模式：",
   "tooltip.staff.continuous_mode.false": "§d关",
   "tooltip.staff.continuous_mode.true": "§d开",
-  "tooltip.staff.core_block": "§a核心方块："
+  "tooltip.staff.core_block": "§a核心方块：",
+  "enchantment.staff.kamikaze_elytra": "神风鞘翅",
+  "deathScreen.title.kamikaze": "目标已摧毁！",
+  "death.attack.explosion.suicide": ""
 }

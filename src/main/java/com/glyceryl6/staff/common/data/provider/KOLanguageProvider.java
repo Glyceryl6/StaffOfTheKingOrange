@@ -68,6 +68,8 @@ public class KOLanguageProvider extends LanguageProvider {
         this.addTooltips("continuous_mode.false", "§dOFF", "§d关");
         this.addTooltips("core_block", "§aCore Block: ", "§a核心方块：");
         this.addTooltips("binding_command_prefix", "§cBinding Command: ", "§c绑定的命令：");
+        this.add("enchantment.staff.kamikaze_elytra", "Kamikaze Elytra", "神风鞘翅");
+        this.add("deathScreen.title.kamikaze", "The target has been destroyed!", "目标已摧毁！");
     }
 
     @Override

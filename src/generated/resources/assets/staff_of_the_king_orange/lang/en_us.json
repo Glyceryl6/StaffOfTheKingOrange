@@ -30,5 +30,8 @@
   "tooltip.staff.continuous_mode": "§bContinuous Mode: ",
   "tooltip.staff.continuous_mode.false": "§dOFF",
   "tooltip.staff.continuous_mode.true": "§dON",
-  "tooltip.staff.core_block": "§aCore Block: "
+  "tooltip.staff.core_block": "§aCore Block: ",
+  "enchantment.staff.kamikaze_elytra": "Kamikaze Elytra",
+  "deathScreen.title.kamikaze": "The target has been destroyed!",
+  "death.attack.explosion.suicide": ""
 }
