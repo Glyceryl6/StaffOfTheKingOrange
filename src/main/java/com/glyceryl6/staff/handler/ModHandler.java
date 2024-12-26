@@ -135,8 +135,8 @@ public class ModHandler {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerItemProperties(FMLClientSetupEvent event) {
-        ItemProperties.register(KOItems.STAFF.get(), Main.prefix("using"), ((stack, level, entity, seed) ->
-                entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F));
+        event.enqueueWork(() -> ItemProperties.register(KOItems.STAFF.get(), Main.prefix("using"), ((stack, level, entity, seed) ->
+                entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F)));
     }
 
 }
